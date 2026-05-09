@@ -51,11 +51,19 @@ export default function Navbar() {
               Place Ad
             </Button>
 
-            <button
-              onClick={() => base44.auth.redirectToLogin()}
-              className="hidden sm:block text-foreground text-sm font-medium hover:underline transition-all ml-1">
-              Login or Sign up
-            </button>
+            {!isLoggedIn ? (
+              <button
+                onClick={() => base44.auth.redirectToLogin()}
+                className="hidden sm:block text-foreground text-sm font-medium hover:underline transition-all ml-1">
+                Login or Sign up
+              </button>
+            ) : (
+              <button
+                onClick={() => base44.auth.logout(window.location.origin + '/')}
+                className="hidden sm:block text-foreground text-sm font-medium hover:underline transition-all ml-1">
+                Sign out
+              </button>
+            )}
 
             <button
               className="lg:hidden text-white"
