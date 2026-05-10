@@ -3,11 +3,21 @@ import { Search, ChevronDown, Menu, X } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { base44 } from '@/api/base44Client';
 import { useAuth } from '@/lib/AuthContext';
+import PlaceAdModal from './PlaceAdModal';
 
 export default function Navbar() {
   const [mobileOpen, setMobileOpen] = useState(false);
+  const [showPlaceAd, setShowPlaceAd] = useState(false);
   const { user } = useAuth();
   const isLoggedIn = !!user;
+
+  const handlePlaceAd = () => {
+    if (!isLoggedIn) {
+      base44.auth.redirectToLogin();
+    } else {
+      setShowPlaceAd(true);
+    }
+  };
 
   const navLinks = [
   { label: 'Buy', hasDropdown: true },
@@ -48,7 +58,7 @@ export default function Navbar() {
             </button>
 
             <Button
-              onClick={() => { if (!isLoggedIn) base44.auth.redirectToLogin(); }}
+              onClick={handlePlaceAd}
               className="bg-transparent border border-foreground text-semibold hover:bg-secondary hover:text-foreground font-semibold px-10 h-9 text-sm">
               Place Ad
             </Button>
@@ -75,6 +85,8 @@ export default function Navbar() {
           </div>
         </div>
       </div>
+
+      {showPlaceAd && <PlaceAdModal onClose={() => setShowPlaceAd(false)} />}
 
       {/* Mobile Nav */}
       {mobileOpen &&
