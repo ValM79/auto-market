@@ -8,6 +8,7 @@ import UserNotRegisteredError from '@/components/UserNotRegisteredError';
 import Home from './pages/Home';
 import CreateAccount from './pages/CreateAccount';
 import CarRent from './pages/CarRent';
+import CarInsurance from './pages/CarInsurance';
 // Add page imports here
 
 const AuthenticatedApp = () => {
@@ -39,6 +40,7 @@ const AuthenticatedApp = () => {
       <Route path="/" element={<Home />} />
       <Route path="/create-account" element={<CreateAccount />} />
       <Route path="/car-rent" element={<CarRent />} />
+      <Route path="/car-insurance" element={<CarInsurance />} />
       <Route path="*" element={<PageNotFound />} />
     </Routes>
   );

@@ -179,6 +179,13 @@ export default function Navbar() {
                   className="text-[hsl(var(--foreground))] px-3 py-2 text-sm font-medium hover:text-destructive flex items-center gap-1 transition-colors">
                   Car Rent
                 </Link>
+              ) : link.label === 'Car insurance' ? (
+                <Link
+                  key="Car insurance"
+                  to="/car-insurance"
+                  className="text-[hsl(var(--foreground))] px-3 py-2 text-sm font-medium hover:text-destructive flex items-center gap-1 transition-colors">
+                  Car insurance
+                </Link>
               ) : (
                 <button
                   key={link.label} className="text-[hsl(var(--foreground))] px-3 py-2 text-sm font-medium hover:text-destructive flex items-center gap-1 transition-colors">
