@@ -20,6 +20,7 @@ import ModifiedCars from './pages/ModifiedCars';
 import CarParts from './pages/CarParts';
 import CarExtras from './pages/CarExtras';
 import RallyCars from './pages/RallyCars';
+import BreakingRepairables from './pages/BreakingRepairables';
 // Add page imports here
 
 const AuthenticatedApp = () => {
@@ -63,6 +64,7 @@ const AuthenticatedApp = () => {
       <Route path="/car-parts" element={<CarParts />} />
       <Route path="/car-extras" element={<CarExtras />} />
       <Route path="/rally-cars" element={<RallyCars />} />
+      <Route path="/breaking-repairables" element={<BreakingRepairables />} />
       <Route path="*" element={<PageNotFound />} />
     </Routes>
   );

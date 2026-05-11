@@ -89,6 +89,7 @@ function CategoryRow({ label, imgKey, highlight, isAllMotor, isOther }) {
     if (label === 'Car Parts') navigate('/car-parts');
     if (label === 'Car Extras') navigate('/car-extras');
     if (label === 'Rally Cars') navigate('/rally-cars');
+    if (label === 'Breaking & Repairables') navigate('/breaking-repairables');
     if (label === 'Commercials') navigate('/commercials');
   };
 
