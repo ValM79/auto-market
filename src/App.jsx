@@ -43,6 +43,7 @@ import BrowsingHistory from './pages/BrowsingHistory';
 import HistoryChecks from './pages/HistoryChecks';
 import PaymentHistory from './pages/PaymentHistory';
 import Help from './pages/Help';
+import UsedCars from './pages/UsedCars';
 // Add page imports here
 
 const AuthenticatedApp = () => {
@@ -109,6 +110,7 @@ const AuthenticatedApp = () => {
       <Route path="/history-checks" element={<HistoryChecks />} />
       <Route path="/payment-history" element={<PaymentHistory />} />
       <Route path="/help" element={<Help />} />
+      <Route path="/used-cars" element={<UsedCars />} />
       <Route path="*" element={<PageNotFound />} />
     </Routes>
   );

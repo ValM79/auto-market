@@ -33,7 +33,7 @@ const dealersMenuItems = [
 ];
 
 const buyMenuItems = [
-  { label: 'Used cars', count: '83,969' },
+  { label: 'Used cars', count: '83,969', route: '/used-cars' },
   { label: 'New cars', count: '6,558' },
   { label: 'Dealership cars', count: '72,543' },
   { label: 'Trusted Dealer cars', count: '33,624' },
@@ -121,6 +121,15 @@ export default function Navbar() {
                       {buyMenuItems.map((item, i) =>
                         item.divider ? (
                           <div key={i} className="border-t border-border my-1" />
+                        ) : item.route ? (
+                          <Link
+                            key={item.label}
+                            to={item.route}
+                            onClick={() => setShowBuyMenu(false)}
+                            className="flex items-center justify-between w-full px-4 py-2 text-sm text-foreground hover:bg-secondary transition-colors">
+                            <span>{item.label}</span>
+                            {item.count && <span className="text-xs text-muted-foreground">({item.count})</span>}
+                          </Link>
                         ) : (
                           <button
                             key={item.label}
