@@ -79,7 +79,7 @@ function CategoryRow({ label, imgKey, highlight, isAllMotor, isOther }) {
   const navigate = useNavigate();
 
   const handleClick = () => {
-    if (label === 'New Cars') navigate('/cars-for-sale');
+    if (label === 'New Cars') navigate('/new-cars');
     if (label === 'Commercials') navigate('/commercials');
   };
 
