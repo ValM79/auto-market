@@ -47,6 +47,7 @@ import UsedCars from './pages/UsedCars';
 import TrustedDealerCars from './pages/TrustedDealerCars';
 import ElectricHybridCars from './pages/ElectricHybridCars';
 import AllMotors from './pages/AllMotors';
+import BuyingTips from './pages/BuyingTips';
 // Add page imports here
 
 const AuthenticatedApp = () => {
@@ -117,6 +118,7 @@ const AuthenticatedApp = () => {
       <Route path="/trusted-dealer-cars" element={<TrustedDealerCars />} />
       <Route path="/electric-hybrid-cars" element={<ElectricHybridCars />} />
       <Route path="/all-motors" element={<AllMotors />} />
+      <Route path="/buying-tips" element={<BuyingTips />} />
       <Route path="*" element={<PageNotFound />} />
     </Routes>
   );

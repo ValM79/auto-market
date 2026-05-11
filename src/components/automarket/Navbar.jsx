@@ -40,7 +40,7 @@ const buyMenuItems = [
   { label: 'Electric & Hybrid cars', count: '25,493', route: '/electric-hybrid-cars' },
   { divider: true },
   { label: 'All motors', route: '/all-motors' },
-  { label: 'Buying tips' },
+  { label: 'Buying tips', route: '/buying-tips' },
 ];
 
 export default function Navbar() {
