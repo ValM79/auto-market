@@ -301,6 +301,15 @@ export default function Navbar() {
                           <item.icon className="w-4 h-4 text-muted-foreground" />
                           {item.label}
                         </Link>
+                      ) : item.label === 'Help' ? (
+                        <Link
+                          key={item.label}
+                          to="/help"
+                          onClick={() => setShowUserMenu(false)}
+                          className="flex items-center gap-2.5 w-full px-4 py-2 text-sm text-foreground hover:bg-secondary transition-colors">
+                          <item.icon className="w-4 h-4 text-muted-foreground" />
+                          {item.label}
+                        </Link>
                       ) : (
                         <button
                           key={item.label}
