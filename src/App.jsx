@@ -25,6 +25,7 @@ import Trucks from './pages/Trucks';
 import Trailers from './pages/Trailers';
 import Campers from './pages/Campers';
 import CoachesBuses from './pages/CoachesBuses';
+import PlantMachinery from './pages/PlantMachinery';
 // Add page imports here
 
 const AuthenticatedApp = () => {
@@ -73,6 +74,7 @@ const AuthenticatedApp = () => {
       <Route path="/trailers" element={<Trailers />} />
       <Route path="/campers" element={<Campers />} />
       <Route path="/coaches-buses" element={<CoachesBuses />} />
+      <Route path="/plant-machinery" element={<PlantMachinery />} />
       <Route path="*" element={<PageNotFound />} />
     </Routes>
   );
