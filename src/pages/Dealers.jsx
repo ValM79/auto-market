@@ -1,0 +1,185 @@
+import React, { useState } from 'react';
+import Navbar from '../components/automarket/Navbar';
+import Footer from '../components/automarket/Footer';
+import { Link } from 'react-router-dom';
+import { MapPin, Car, RotateCcw, ChevronDown } from 'lucide-react';
+
+const dealers = [
+  {
+    name: '2V Motor Sales',
+    rating: 4.4,
+    reviews: 63,
+    location: 'Kilreesk, K67 Y2T6, Dublin',
+    stock: 41,
+    logo: 'https://images.unsplash.com/photo-1611566026373-c6c8da0ea861?w=80&q=80',
+  },
+  {
+    name: '547 Motors',
+    rating: 4.2,
+    reviews: 38,
+    location: 'Newcastlewest, Limerick',
+    stock: 27,
+    logo: 'https://images.unsplash.com/photo-1568605117036-5fe5e7bab0b7?w=80&q=80',
+  },
+  {
+    name: 'Abbey Motors',
+    rating: 4.6,
+    reviews: 112,
+    location: 'Roscommon Town, Roscommon',
+    stock: 58,
+    logo: 'https://images.unsplash.com/photo-1533473359331-0135ef1b58bf?w=80&q=80',
+  },
+  {
+    name: 'AutoVision Cork',
+    rating: 4.3,
+    reviews: 74,
+    location: 'Ballincollig, Cork',
+    stock: 34,
+    logo: 'https://images.unsplash.com/photo-1552519507-da3b142c6e3d?w=80&q=80',
+  },
+  {
+    name: 'Connacht Cars',
+    rating: 4.5,
+    reviews: 89,
+    location: 'Galway City, Galway',
+    stock: 62,
+    logo: 'https://images.unsplash.com/photo-1494976388531-d1058494cdd8?w=80&q=80',
+  },
+  {
+    name: 'Midlands Motor Centre',
+    rating: 4.1,
+    reviews: 51,
+    location: 'Athlone, Westmeath',
+    stock: 19,
+    logo: 'https://images.unsplash.com/photo-1502877338535-766e1452684a?w=80&q=80',
+  },
+];
+
+const dealerNames = ['All Dealers', ...dealers.map((d) => d.name)];
+const makes = ['All Makes', 'Toyota', 'Ford', 'BMW', 'Volkswagen', 'Audi', 'Mercedes', 'Nissan', 'Hyundai', 'Skoda', 'Renault'];
+const counties = ['All Counties', 'Dublin', 'Cork', 'Galway', 'Limerick', 'Waterford', 'Kilkenny', 'Mayo', 'Kerry', 'Clare', 'Tipperary', 'Roscommon', 'Westmeath'];
+
+function StarRating({ rating }) {
+  return (
+    <div className="flex items-center gap-0.5">
+      {[1, 2, 3, 4, 5].map((star) => (
+        <svg key={star} className={`w-4 h-4 ${star <= Math.round(rating) ? 'text-yellow-400' : 'text-gray-200'}`} fill="currentColor" viewBox="0 0 20 20">
+          <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
+        </svg>
+      ))}
+    </div>
+  );
+}
+
+function SelectDropdown({ value, onChange, options, placeholder }) {
+  return (
+    <div className="relative">
+      <select
+        value={value}
+        onChange={(e) => onChange(e.target.value)}
+        className="w-full appearance-none border border-border rounded-lg px-4 py-3 text-sm text-foreground bg-white focus:outline-none focus:ring-2 focus:ring-primary/30 focus:border-primary pr-10"
+      >
+        <option value="">{placeholder}</option>
+        {options.slice(1).map((opt) => (
+          <option key={opt} value={opt}>{opt}</option>
+        ))}
+      </select>
+      <ChevronDown className="absolute right-3 top-1/2 -translate-y-1/2 w-4 h-4 text-muted-foreground pointer-events-none" />
+    </div>
+  );
+}
+
+export default function Dealers() {
+  const [dealerFilter, setDealerFilter] = useState('');
+  const [makeFilter, setMakeFilter] = useState('');
+  const [countyFilter, setCountyFilter] = useState('');
+
+  const handleReset = () => {
+    setDealerFilter('');
+    setMakeFilter('');
+    setCountyFilter('');
+  };
+
+  return (
+    <div className="min-h-screen bg-background">
+      <Navbar />
+
+      {/* Breadcrumb + quick links */}
+      <div className="max-w-7xl mx-auto px-4 py-3 flex items-center justify-between">
+        <div className="flex items-center gap-2 text-sm text-muted-foreground">
+          <Link to="/" className="hover:text-primary transition-colors">Home</Link>
+          <span>›</span>
+          <span className="text-foreground">Dealers</span>
+        </div>
+        <div className="hidden sm:flex items-center gap-2">
+          {['Cartell Vehicle Check', 'Car Finance', 'Car Insurance'].map((label) => (
+            <button key={label} className="border border-border rounded-full px-4 py-1.5 text-xs text-foreground hover:bg-secondary transition-colors">
+              {label}
+            </button>
+          ))}
+        </div>
+      </div>
+
+      {/* Hero with search panel */}
+      <div className="relative">
+        <img
+          src="https://images.unsplash.com/photo-1568605117036-5fe5e7bab0b7?w=1200&q=80"
+          alt="Dealership"
+          className="w-full h-[420px] object-cover"
+        />
+        <div className="absolute inset-0 bg-black/20" />
+
+        {/* Search card */}
+        <div className="absolute top-1/2 left-[6%] -translate-y-1/2 bg-white rounded-2xl shadow-2xl p-7 w-80">
+          <h2 className="text-2xl font-bold text-foreground mb-5">Dealers in Ireland</h2>
+          <div className="flex flex-col gap-3">
+            <SelectDropdown value={dealerFilter} onChange={setDealerFilter} options={dealerNames} placeholder="Select a dealer name..." />
+            <SelectDropdown value={makeFilter} onChange={setMakeFilter} options={makes} placeholder="Select a make..." />
+            <SelectDropdown value={countyFilter} onChange={setCountyFilter} options={counties} placeholder="Select a county..." />
+          </div>
+          <button onClick={handleReset} className="flex items-center gap-1.5 text-sm text-primary mt-3 hover:underline">
+            <RotateCcw className="w-3.5 h-3.5" /> Reset Search
+          </button>
+          <button className="mt-4 w-full bg-primary text-white font-semibold py-3 rounded-lg hover:bg-primary/90 transition-colors">
+            Search
+          </button>
+        </div>
+      </div>
+
+      {/* Dealer listings */}
+      <div className="max-w-4xl mx-auto px-4 py-10 flex flex-col gap-5">
+        {dealers.map((dealer) => (
+          <div key={dealer.name} className="bg-white rounded-xl border border-border shadow-sm p-5 flex flex-col sm:flex-row sm:items-center gap-4">
+            <img src={dealer.logo} alt={dealer.name} className="w-20 h-16 object-cover rounded-lg flex-shrink-0" />
+            <div className="flex-1">
+              <h3 className="text-lg font-bold text-primary mb-1">{dealer.name}</h3>
+              <div className="flex items-center gap-2 mb-2">
+                <StarRating rating={dealer.rating} />
+                <span className="text-sm font-semibold text-foreground">{dealer.rating}/5</span>
+                <span className="text-sm text-muted-foreground">({dealer.reviews} reviews)</span>
+              </div>
+              <div className="flex items-center gap-1 text-sm text-muted-foreground mb-1">
+                <MapPin className="w-4 h-4 flex-shrink-0" />
+                <span>{dealer.location}</span>
+              </div>
+              <div className="flex items-center gap-1 text-sm text-muted-foreground">
+                <Car className="w-4 h-4 flex-shrink-0" />
+                <span>Stock: {dealer.stock}</span>
+              </div>
+            </div>
+            <div className="flex flex-col sm:flex-row gap-2 flex-shrink-0">
+              <button className="flex items-center gap-2 border border-border rounded-full px-4 py-2 text-sm text-foreground hover:bg-secondary transition-colors">
+                <Car className="w-4 h-4" /> View Cars
+              </button>
+              <button className="flex items-center gap-2 border border-border rounded-full px-4 py-2 text-sm text-foreground hover:bg-secondary transition-colors">
+                <Car className="w-4 h-4" /> View Commercials
+              </button>
+            </div>
+          </div>
+        ))}
+      </div>
+
+      <Footer />
+    </div>
+  );
+}
