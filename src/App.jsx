@@ -36,6 +36,7 @@ import Boats from './pages/Boats';
 import BoatExtras from './pages/BoatExtras';
 import OtherMotor from './pages/OtherMotor';
 import SavedSearches from './pages/SavedSearches';
+import Profile from './pages/Profile';
 // Add page imports here
 
 const AuthenticatedApp = () => {
@@ -95,6 +96,7 @@ const AuthenticatedApp = () => {
       <Route path="/boat-extras" element={<BoatExtras />} />
       <Route path="/other-motor" element={<OtherMotor />} />
       <Route path="/saved-searches" element={<SavedSearches />} />
+      <Route path="/profile" element={<Profile />} />
       <Route path="*" element={<PageNotFound />} />
     </Routes>
   );
