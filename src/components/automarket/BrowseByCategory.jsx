@@ -92,6 +92,7 @@ function CategoryRow({ label, imgKey, highlight, isAllMotor, isOther }) {
     if (label === 'Breaking & Repairables') navigate('/breaking-repairables');
     if (label === 'Trucks') navigate('/trucks');
     if (label === 'Trailers') navigate('/trailers');
+    if (label === 'Campers') navigate('/campers');
     if (label === 'Commercials') navigate('/commercials');
   };
 
