@@ -28,8 +28,8 @@ const IMG = {
 
 const categories = [
 [
-{ label: 'Used Cars', imgKey: 'car' },
-{ label: 'New Cars', imgKey: 'newCar' },
+{ label: 'New Cars', imgKey: 'car' },
+{ label: 'Cars', imgKey: 'newCar' },
 { label: 'Cars from Dealerships', imgKey: 'dealerCars' },
 { label: 'Vintage Cars', imgKey: 'vintageCar' },
 { label: 'Modified Cars', imgKey: 'modifiedCar' },
