@@ -48,6 +48,7 @@ function Sel({ value, onChange, options, placeholder }) {
 }
 
 export default function FiltersSidebar() {
+  const [resetKey, setResetKey] = useState(0);
   const [sellerTypes, setSellerTypes] = useState([]);
   const [ratings, setRatings] = useState([]);
   const [vehicles, setVehicles] = useState([{ make: '', model: '', trim: '' }]);
@@ -102,6 +103,7 @@ export default function FiltersSidebar() {
     setColoursSelected([]); setBootFrom(''); setBootTo('');
     setOwnership([]); setRoadTaxFrom(''); setRoadTaxTo('');
     setReserveOnline(false); setAdType('All'); setTrusted(false);
+    setResetKey(k => k + 1);
   };
 
   const toggleArr = (setter) => (val) => setter(prev => prev.includes(val) ? prev.filter(x => x !== val) : [...prev, val]);
@@ -124,6 +126,7 @@ export default function FiltersSidebar() {
         <Search className="w-4 h-4" /> View your previous searches
       </button>
 
+      <div key={resetKey}>
       {/* Trusted dealers */}
       <div className="flex items-center gap-2 mb-3">
         <input type="checkbox" id="trusted" checked={trusted} onChange={e => setTrusted(e.target.checked)} className="w-3.5 h-3.5 accent-primary" />
@@ -381,6 +384,7 @@ export default function FiltersSidebar() {
           ))}
         </div>
       </Section>
+      </div>
     </div>
   );
 }
