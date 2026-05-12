@@ -116,13 +116,28 @@ export default function PlaceAd() {
 
   const handleCategoryChange = (e) => {
     const val = e.target.value;
-    const match = categoryToSection[val.trim().toLowerCase()];
-    setForm((f) => ({
-      ...f,
-      category: val,
-      section: match ? match.section : f.section,
-      subsection: match ? match.subsection : f.subsection,
-    }));
+    const trimmed = val.trim().toLowerCase();
+    const match = categoryToSection[trimmed];
+
+    if (match) {
+      setForm((f) => ({
+        ...f,
+        category: val,
+        section: match.section,
+        subsection: match.subsection,
+      }));
+    } else if (trimmed) {
+      // Auto-create a new section/subsection from the typed value
+      const capitalized = val.trim().charAt(0).toUpperCase() + val.trim().slice(1);
+      setForm((f) => ({
+        ...f,
+        category: val,
+        section: capitalized,
+        subsection: capitalized,
+      }));
+    } else {
+      setForm((f) => ({ ...f, category: val, section: '', subsection: '' }));
+    }
   };
 
   const currentSectionObj = sections.find((s) => s.label === form.section);
