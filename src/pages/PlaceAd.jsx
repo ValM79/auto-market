@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
-import { ArrowLeft, Upload, X, Youtube, User, Mail, Phone, MapPin, Tag, FileText, DollarSign, ChevronDown } from 'lucide-react';
+import { ArrowLeft, Upload, X, Youtube, User, Mail, Phone, MapPin, Tag, FileText, DollarSign, ChevronDown, Plus } from 'lucide-react';
 import Navbar from '../components/automarket/Navbar';
 import Footer from '../components/automarket/Footer';
 import { base44 } from '@/api/base44Client';
@@ -118,7 +118,7 @@ export default function PlaceAd() {
 
   const handleFiles = (files) => {
     const validFiles = Array.from(files).filter((f) => f.type.startsWith('image/'));
-    const remaining = 15 - photos.length;
+    const remaining = 20 - photos.length;
     const toAdd = validFiles.slice(0, remaining).map((f) => ({
       file: f,
       preview: URL.createObjectURL(f),
@@ -250,13 +250,18 @@ export default function PlaceAd() {
           </Section>
 
           {/* Section 2: Photos */}
-          <Section id="photos-section" title="Photos and Video" icon={<Upload className="w-5 h-5" />} subtitle="Up to 15 photos and 1 video">
+          <Section id="photos-section" title="Photos and Video" icon={<Upload className="w-5 h-5" />} subtitle="Up to 20 photos">
             {/* Photo grid */}
-            {photos.length > 0 && (
-              <div className="grid grid-cols-3 sm:grid-cols-5 gap-2 mb-4">
-                {photos.map((p, i) => (
+            <div className="grid grid-cols-3 sm:grid-cols-5 gap-2 mb-4">
+              {photos.length > 0 ? (
+                photos.map((p, i) => (
                   <div key={i} className="relative rounded-lg overflow-hidden aspect-square border border-border">
                     <img src={p.preview} alt="" className="w-full h-full object-cover" />
+                    {i === 0 && (
+                      <div className="absolute top-2 left-2 bg-yellow-500 text-white text-xs font-bold px-2 py-1 rounded flex items-center gap-1">
+                        <span>★</span> COVER
+                      </div>
+                    )}
                     <button
                       onClick={() => removePhoto(i)}
                       className="absolute top-1 right-1 bg-black/60 text-white rounded-full w-5 h-5 flex items-center justify-center hover:bg-black/80"
@@ -264,12 +269,25 @@ export default function PlaceAd() {
                       <X className="w-3 h-3" />
                     </button>
                   </div>
-                ))}
-              </div>
-            )}
+                ))
+              ) : null}
+              {photos.length < 20 && (
+                <div
+                  onDragOver={(e) => { e.preventDefault(); setDragOver(true); }}
+                  onDragLeave={() => setDragOver(false)}
+                  onDrop={handleDrop}
+                  className={`relative rounded-lg aspect-square border-2 border-dashed flex flex-col items-center justify-center transition-colors cursor-pointer ${dragOver ? 'border-primary bg-primary/5' : 'border-border'}`}
+                >
+                  <label className="cursor-pointer flex flex-col items-center justify-center w-full h-full">
+                    <Plus className="w-8 h-8 text-primary mb-1" />
+                    <span className="text-sm text-muted-foreground">{photos.length}/20</span>
+                    <input type="file" multiple accept="image/*" className="hidden" onChange={(e) => handleFiles(e.target.files)} />
+                  </label>
+                </div>
+              )}
+            </div>
 
-            {/* Drop zone */}
-            {photos.length < 15 && (
+            {photos.length === 0 && (
               <div
                 onDragOver={(e) => { e.preventDefault(); setDragOver(true); }}
                 onDragLeave={() => setDragOver(false)}
@@ -282,7 +300,7 @@ export default function PlaceAd() {
                   <input type="file" multiple accept="image/*" className="hidden" onChange={(e) => handleFiles(e.target.files)} />
                 </label>
                 <span className="text-muted-foreground text-sm"> or drag and drop</span>
-                <p className="text-xs text-muted-foreground mt-2">Up to {15 - photos.length} more images · .jpg, .png and .gif files</p>
+                <p className="text-xs text-muted-foreground mt-2">Up to 20 images · .jpg, .png and .gif files</p>
               </div>
             )}
 
