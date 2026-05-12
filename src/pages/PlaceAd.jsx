@@ -124,10 +124,6 @@ export default function PlaceAd() {
       preview: URL.createObjectURL(f),
     }));
     setPhotos((prev) => [...prev, ...toAdd]);
-    
-    // Reset file input so same files can be selected again
-    const fileInputs = document.querySelectorAll('input[type="file"]');
-    fileInputs.forEach(input => input.value = '');
   };
 
   const removePhoto = (idx) => {
@@ -285,7 +281,7 @@ export default function PlaceAd() {
                       <label className="cursor-pointer flex flex-col items-center justify-center w-full h-full">
                         <Plus className="w-8 h-8 text-primary mb-1" />
                         <span className="text-sm text-muted-foreground font-medium">{photos.length}/20</span>
-                        <input type="file" multiple accept="image/*" className="hidden" onChange={(e) => handleFiles(e.target.files)} />
+                        <input key={photos.length} type="file" multiple accept="image/*" className="hidden" onChange={(e) => handleFiles(e.target.files)} />
                       </label>
                     </div>
                   )}
@@ -303,7 +299,7 @@ export default function PlaceAd() {
                 <Upload className="w-8 h-8 text-muted-foreground mx-auto mb-3" />
                 <label className="cursor-pointer">
                   <span className="text-primary font-semibold hover:underline">Add Photos</span>
-                  <input type="file" multiple accept="image/*" className="hidden" onChange={(e) => handleFiles(e.target.files)} />
+                  <input key="initial" type="file" multiple accept="image/*" className="hidden" onChange={(e) => handleFiles(e.target.files)} />
                 </label>
                 <span className="text-muted-foreground text-sm"> or drag and drop</span>
                 <p className="text-xs text-muted-foreground mt-2">Up to 20 images · .jpg, .png and .gif files</p>
