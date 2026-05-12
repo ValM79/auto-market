@@ -101,11 +101,7 @@ export default function Navbar() {
           <Link to="/" className="flex items-center gap-2">
             <span className="text-[hsl(var(--foreground))] text-xl font-semibold tracking-tight">Auto</span>
             <span className="text-[hsl(var(--foreground))] text-xl font-extrabold tracking-tight">Market</span>
-            <svg className="w-5 h-5 text-primary" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-              <circle cx="12" cy="12" r="10" />
-              <circle cx="12" cy="12" r="6" />
-              <circle cx="12" cy="12" r="2" />
-            </svg>
+            <img src="https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=32&h=32&fit=crop&q=80" alt="Car Wheel" className="w-5 h-5 object-cover rounded-sm" />
           </Link>
 
           {/* Desktop Nav */}
