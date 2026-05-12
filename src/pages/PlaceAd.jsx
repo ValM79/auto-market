@@ -134,6 +134,7 @@ export default function PlaceAd() {
     setForm({ ...emptyForm, fullName: user?.full_name || '', email: user?.email || '' });
     setPhotos([]);
     setVideo(null);
+    setCategoryStarted(false);
   };
 
   const handleFiles = (files) => {
