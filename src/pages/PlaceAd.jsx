@@ -109,6 +109,7 @@ export default function PlaceAd() {
   const [viewerIndex, setViewerIndex] = useState(null);
   const [loadingVehicle, setLoadingVehicle] = useState(false);
   const [vehicleError, setVehicleError] = useState('');
+  const [editingVehicle, setEditingVehicle] = useState(false);
 
   const set = (field) => (e) => setForm((f) => ({ ...f, [field]: e.target.value }));
   const toggle = (field) => () => setForm((f) => ({ ...f, [field]: !f[field] }));
@@ -493,7 +494,7 @@ export default function PlaceAd() {
                 </div>
               </div>
 
-              {form.vehicleMake && (
+              {form.vehicleMake && !editingVehicle && (
                 <>
                   <div className="bg-accent/10 border border-accent/20 rounded-lg p-4 mb-4 flex items-start gap-3">
                     <div className="flex-shrink-0 text-accent">
@@ -558,7 +559,11 @@ export default function PlaceAd() {
                     </div>
                   </div>
 
-                  <button className="mt-3 text-primary text-sm font-semibold hover:underline">
+                  <button
+                    type="button"
+                    onClick={() => setEditingVehicle(true)}
+                    className="mt-3 text-primary text-sm font-semibold hover:underline"
+                  >
                     Edit vehicle details
                   </button>
 
@@ -566,6 +571,128 @@ export default function PlaceAd() {
                     <p className="text-xs text-amber-800">More details about your vehicle may be automatically displayed in your ad</p>
                   </div>
                 </>
+              )}
+
+              {editingVehicle && (
+                <div className="space-y-4 bg-secondary/30 rounded-lg p-4">
+                  <div className="grid grid-cols-2 gap-4">
+                    <div>
+                      <label className="block text-sm font-medium text-foreground mb-1.5">Make</label>
+                      <input
+                        type="text"
+                        value={form.vehicleMake}
+                        onChange={set('vehicleMake')}
+                        className="w-full border border-border rounded-lg px-4 py-3 text-sm focus:outline-none focus:ring-2 focus:ring-primary/30 focus:border-primary"
+                      />
+                    </div>
+                    <div>
+                      <label className="block text-sm font-medium text-foreground mb-1.5">Model</label>
+                      <input
+                        type="text"
+                        value={form.vehicleModel}
+                        onChange={set('vehicleModel')}
+                        className="w-full border border-border rounded-lg px-4 py-3 text-sm focus:outline-none focus:ring-2 focus:ring-primary/30 focus:border-primary"
+                      />
+                    </div>
+                    <div>
+                      <label className="block text-sm font-medium text-foreground mb-1.5">Body Type</label>
+                      <input
+                        type="text"
+                        value={form.bodyType}
+                        onChange={set('bodyType')}
+                        className="w-full border border-border rounded-lg px-4 py-3 text-sm focus:outline-none focus:ring-2 focus:ring-primary/30 focus:border-primary"
+                      />
+                    </div>
+                    <div>
+                      <label className="block text-sm font-medium text-foreground mb-1.5">Fuel Type</label>
+                      <input
+                        type="text"
+                        value={form.vehicleFuel}
+                        onChange={set('vehicleFuel')}
+                        className="w-full border border-border rounded-lg px-4 py-3 text-sm focus:outline-none focus:ring-2 focus:ring-primary/30 focus:border-primary"
+                      />
+                    </div>
+                    <div>
+                      <label className="block text-sm font-medium text-foreground mb-1.5">Colour</label>
+                      <input
+                        type="text"
+                        value={form.colour}
+                        onChange={set('colour')}
+                        className="w-full border border-border rounded-lg px-4 py-3 text-sm focus:outline-none focus:ring-2 focus:ring-primary/30 focus:border-primary"
+                      />
+                    </div>
+                    <div>
+                      <label className="block text-sm font-medium text-foreground mb-1.5">Year</label>
+                      <input
+                        type="text"
+                        value={form.vehicleYear}
+                        onChange={set('vehicleYear')}
+                        className="w-full border border-border rounded-lg px-4 py-3 text-sm focus:outline-none focus:ring-2 focus:ring-primary/30 focus:border-primary"
+                      />
+                    </div>
+                    <div>
+                      <label className="block text-sm font-medium text-foreground mb-1.5">Transmission</label>
+                      <input
+                        type="text"
+                        value={form.vehicleTransmission}
+                        onChange={set('vehicleTransmission')}
+                        className="w-full border border-border rounded-lg px-4 py-3 text-sm focus:outline-none focus:ring-2 focus:ring-primary/30 focus:border-primary"
+                      />
+                    </div>
+                    <div>
+                      <label className="block text-sm font-medium text-foreground mb-1.5">Engine Size</label>
+                      <input
+                        type="text"
+                        value={form.engineSize}
+                        onChange={set('engineSize')}
+                        className="w-full border border-border rounded-lg px-4 py-3 text-sm focus:outline-none focus:ring-2 focus:ring-primary/30 focus:border-primary"
+                      />
+                    </div>
+                    <div>
+                      <label className="block text-sm font-medium text-foreground mb-1.5">Number of Doors</label>
+                      <input
+                        type="text"
+                        value={form.numberOfDoors}
+                        onChange={set('numberOfDoors')}
+                        className="w-full border border-border rounded-lg px-4 py-3 text-sm focus:outline-none focus:ring-2 focus:ring-primary/30 focus:border-primary"
+                      />
+                    </div>
+                    <div>
+                      <label className="block text-sm font-medium text-foreground mb-1.5">Number of Seats</label>
+                      <input
+                        type="text"
+                        value={form.numberOfSeats}
+                        onChange={set('numberOfSeats')}
+                        className="w-full border border-border rounded-lg px-4 py-3 text-sm focus:outline-none focus:ring-2 focus:ring-primary/30 focus:border-primary"
+                      />
+                    </div>
+                    <div>
+                      <label className="block text-sm font-medium text-foreground mb-1.5">Current Country of Reg.</label>
+                      <input
+                        type="text"
+                        value={form.currentCountryOfReg}
+                        onChange={set('currentCountryOfReg')}
+                        className="w-full border border-border rounded-lg px-4 py-3 text-sm focus:outline-none focus:ring-2 focus:ring-primary/30 focus:border-primary"
+                      />
+                    </div>
+                    <div>
+                      <label className="block text-sm font-medium text-foreground mb-1.5">NCT Expiry</label>
+                      <input
+                        type="text"
+                        value={form.nctExpiry}
+                        onChange={set('nctExpiry')}
+                        className="w-full border border-border rounded-lg px-4 py-3 text-sm focus:outline-none focus:ring-2 focus:ring-primary/30 focus:border-primary"
+                      />
+                    </div>
+                  </div>
+                  <button
+                    type="button"
+                    onClick={() => setEditingVehicle(false)}
+                    className="w-full bg-primary text-white font-semibold py-2.5 rounded-lg hover:bg-primary/90 transition-colors text-sm"
+                  >
+                    Done Editing
+                  </button>
+                </div>
               )}
             </div>
           </Section>
