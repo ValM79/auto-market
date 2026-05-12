@@ -13,10 +13,13 @@ export default function QuickLinks() {
       <div className="flex gap-2">
         {links.map((link) => {
         const isCartell = link.label === 'Cartell Vehicle Check';
-        return isCartell ? (
+        const isCarFinance = link.label === 'Car Finance';
+        const href = isCartell ? 'https://cartell.ie' : isCarFinance ? 'https://www.bankofireland.com/products/loans/car-loan/' : null;
+        
+        return (href ? (
           <a
             key={link.label}
-            href="https://cartell.ie"
+            href={href}
             target="_blank"
             rel="noopener noreferrer"
             className="flex items-center gap-1.5 px-3 py-1.5 rounded-full border border-border text-xs font-medium text-muted-foreground hover:text-foreground hover:border-primary/30 transition-colors"
@@ -32,7 +35,7 @@ export default function QuickLinks() {
             <link.icon className="w-3.5 h-3.5" />
             {link.label}
           </button>
-        );
+        ));
       })}
       </div>
     </div>
