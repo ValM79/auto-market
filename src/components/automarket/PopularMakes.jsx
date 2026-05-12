@@ -1,4 +1,5 @@
 import React from 'react';
+import { useNavigate } from 'react-router-dom';
 
 const makes = [
   { name: 'Volkswagen', count: '6,746' },
@@ -12,10 +13,16 @@ const makes = [
   { name: 'Skoda', count: '2,619' },
   { name: 'Nissan', count: '2,584' },
   { name: 'Renault', count: '2,020' },
-  { name: 'Peugeot', count: '2,017' },
+  { name: 'Volvo', count: '1,847' },
 ];
 
 export default function PopularMakes() {
+  const navigate = useNavigate();
+
+  const handleMakeClick = (make) => {
+    if (make === 'Volvo') navigate('/volvo-cars');
+  };
+
   return (
     <section className="max-w-7xl mx-auto px-4 py-12 md:py-16">
       <h2 className="text-2xl md:text-3xl font-bold text-center text-foreground mb-8">
@@ -25,6 +32,7 @@ export default function PopularMakes() {
         {makes.map((make) => (
           <button
             key={make.name}
+            onClick={() => handleMakeClick(make.name)}
             className="flex flex-col items-center justify-center bg-card rounded-xl border border-border p-4 hover:border-primary/40 hover:shadow-md transition-all duration-200 group"
           >
             <div className="w-10 h-10 rounded-full bg-primary/10 flex items-center justify-center mb-2 group-hover:bg-primary/20 transition-colors">
