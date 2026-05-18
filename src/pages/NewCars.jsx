@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
+import PromoBanner from '../components/automarket/PromoBanner';
 import { Search, Star, ChevronDown, Heart, Camera, ArrowLeft } from 'lucide-react';
 import Navbar from '../components/automarket/Navbar';
 import Footer from '../components/automarket/Footer';
@@ -171,21 +172,7 @@ export default function NewCars() {
           </div>
         </div>
 
-        {/* Promo banner */}
-        <div className="rounded-xl overflow-hidden mb-6 flex h-36 sm:h-44 bg-white border border-border">
-          <div className="w-1/3 bg-orange-500 flex flex-col items-center justify-center p-4 text-center">
-            <div className="border-4 border-white rounded-lg p-3 mb-1">
-              <span className="text-white font-extrabold text-xs leading-tight">CLICK<br />HERE<br />FOR MORE<br />INFO</span>
-            </div>
-          </div>
-          <div className="w-1/3 relative">
-            <img src="https://images.unsplash.com/photo-1560518883-ce09059eeffa?w=400&q=80" alt="Promo" className="w-full h-full object-cover" />
-          </div>
-          <div className="w-1/3 bg-orange-500 flex flex-col items-center justify-center p-4 text-center">
-            <p className="text-white font-extrabold text-lg sm:text-2xl leading-tight">MEMBERS<br />FLEXIBLE<br />MORTGAGE</p>
-            <p className="text-white/80 text-xs mt-2">Lucan District Credit Union</p>
-          </div>
-        </div>
+        <PromoBanner />
 
         <div className="flex gap-6">
           {/* Sidebar */}

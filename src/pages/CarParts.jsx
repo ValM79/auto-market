@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
+import PromoBanner from '../components/automarket/PromoBanner';
 import { Search, Heart, Camera, ChevronDown, Star, LayoutList, LayoutGrid, ArrowLeft } from 'lucide-react';
 import Navbar from '../components/automarket/Navbar';
 import Footer from '../components/automarket/Footer';
@@ -154,30 +155,7 @@ export default function CarParts() {
           </div>
         </div>
 
-        {/* Castrol-style Banner */}
-        <div className="mb-6 rounded-xl overflow-hidden border border-border bg-white flex h-36 sm:h-44">
-          <div className="w-1/2 flex flex-col justify-center px-6 py-4 bg-white">
-            <p className="text-green-700 font-bold text-lg sm:text-xl leading-snug mb-3">
-              We've got every fluid<br />your workshop needs.
-            </p>
-            <button className="bg-green-600 hover:bg-green-700 text-white text-xs font-semibold px-4 py-2 rounded-full w-max transition-colors">
-              Find the right oil for you
-            </button>
-            <div className="flex items-center gap-3 mt-3">
-              <span className="text-red-600 font-extrabold text-sm tracking-tight">Castrol</span>
-              <span className="text-muted-foreground text-xs">|</span>
-              <span className="text-blue-700 font-bold text-xs">Certa Lubricants</span>
-            </div>
-          </div>
-          <div className="w-1/2 relative">
-            <img
-              src="https://images.unsplash.com/photo-1486262715619-67b85e0b08d3?w=600&q=80"
-              alt="Workshop"
-              className="w-full h-full object-cover"
-            />
-            <div className="absolute inset-0 bg-gradient-to-l from-transparent to-white/10" />
-          </div>
-        </div>
+        <PromoBanner />
 
         <div className="flex gap-6">
           {/* Sidebar */}

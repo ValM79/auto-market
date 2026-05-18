@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
+import PromoBanner from '../components/automarket/PromoBanner';
 import { Search, Heart, Camera, ChevronDown, ChevronUp, Star, SlidersHorizontal, LayoutList, LayoutGrid, ArrowLeft } from 'lucide-react';
 import Navbar from '../components/automarket/Navbar';
 import Footer from '../components/automarket/Footer';
@@ -161,14 +162,7 @@ export default function CarsForSale() {
           </div>
         </div>
 
-        {/* Banner */}
-        <div className="mb-6 rounded-xl overflow-hidden h-32 bg-orange-500 flex items-center justify-between px-8">
-          <div className="text-white">
-            <p className="text-xs font-semibold uppercase tracking-wider mb-1">Members</p>
-            <p className="text-3xl font-extrabold leading-tight">FLEXIBLE<br />MORTGAGE</p>
-          </div>
-          <img src="https://images.unsplash.com/photo-1560472355-536de3962603?w=300&q=80" alt="Banner" className="h-full object-cover rounded-lg opacity-80" />
-        </div>
+        <PromoBanner />
 
         <div className="flex gap-6">
           {/* Sidebar Filters */}
