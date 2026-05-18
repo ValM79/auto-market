@@ -245,8 +245,8 @@ export default function Commercials() {
           </div>
         </div>
 
-        <div className="rounded-xl overflow-hidden mb-6 h-36 sm:h-44">
-          <img src="https://images.unsplash.com/photo-1586191180000-5df15b3eef4a?w=1200&q=80" alt="Promo" className="w-full h-full object-cover" />
+        <div className="mb-6 rounded-xl overflow-hidden border border-border h-36 sm:h-44">
+          <img src="https://images.unsplash.com/photo-1519003722824-194d4455a60c?w=1200&q=80" alt="Commercials Banner" className="w-full h-full object-cover" />
         </div>
 
         <div className="flex gap-6">
