@@ -32,8 +32,16 @@ const roadTaxOptions = ['Any', 'Under €200', '€200–€400', '€400–€6
 const warrantyOptions = ['Any duration or none', 'Under warranty', '1 year+', '2 years+', '3 years+'];
 const adTypes = ['All', 'For Sale', 'Wanted'];
 
-function Section({ title, defaultOpen = true, children }) {
+function Section({ title, defaultOpen = true, children, alwaysOpen = false }) {
   const [open, setOpen] = useState(defaultOpen);
+  if (alwaysOpen) {
+    return (
+      <div className="border-b border-border py-4">
+        <div className="text-base font-semibold text-foreground mb-4">{title}</div>
+        {children}
+      </div>
+    );
+  }
   return (
     <div className="border-b border-border py-4">
       <button onClick={() => setOpen(v => !v)} className="flex items-center justify-between w-full text-base font-semibold text-foreground">
@@ -158,7 +166,7 @@ export default function FiltersSidebar() {
       </Section>
 
       {/* Year */}
-      <Section title="Year">
+      <Section title="Year" alwaysOpen>
         <div className="grid grid-cols-2 gap-2">
           <Sel value={yearFrom} onChange={setYearFrom} options={years} placeholder="From" />
           <Sel value={yearTo} onChange={setYearTo} options={years} placeholder="To" />
@@ -166,7 +174,7 @@ export default function FiltersSidebar() {
       </Section>
 
       {/* Price */}
-      <Section title="Price">
+      <Section title="Price" alwaysOpen>
         <div className="flex border border-border rounded-lg overflow-hidden mb-4 text-sm font-medium">
           {['total', 'monthly'].map(tab => (
             <button key={tab} onClick={() => setPriceTab(tab)}
@@ -183,7 +191,7 @@ export default function FiltersSidebar() {
       </Section>
 
       {/* Mileage */}
-      <Section title="Mileage">
+      <Section title="Mileage" alwaysOpen>
         <div className="grid grid-cols-2 gap-2">
           <input type="number" value={mileageFrom} onChange={e => setMileageFrom(e.target.value)} placeholder="From" className="border border-border rounded-lg px-4 py-3 text-base focus:outline-none focus:ring-1 focus:ring-primary/40 w-full" />
           <input type="number" value={mileageTo} onChange={e => setMileageTo(e.target.value)} placeholder="To" className="border border-border rounded-lg px-4 py-3 text-base focus:outline-none focus:ring-1 focus:ring-primary/40 w-full" />
@@ -207,7 +215,7 @@ export default function FiltersSidebar() {
       </Section>
 
       {/* Engine size */}
-      <Section title="Engine size" defaultOpen={false}>
+      <Section title="Engine size" alwaysOpen>
         <div className="grid grid-cols-2 gap-2">
           <Sel value={engineSizeFrom} onChange={setEngineSizeFrom} options={engineSizes} placeholder="From" />
           <Sel value={engineSizeTo} onChange={setEngineSizeTo} options={engineSizes} placeholder="To" />
@@ -215,7 +223,7 @@ export default function FiltersSidebar() {
       </Section>
 
       {/* Transmission */}
-      <Section title="Transmission">
+      <Section title="Transmission" alwaysOpen>
         <div className="flex flex-wrap gap-2">
           {transmissions.map(t => (
             <button key={t} onClick={() => toggleArr(setTransSelected)(t)}
@@ -227,7 +235,7 @@ export default function FiltersSidebar() {
       </Section>
 
       {/* Location */}
-      <Section title="Location">
+      <Section title="Location" alwaysOpen>
         <div className="flex flex-col gap-2">
           <Sel value={county} onChange={setCounty} options={counties} />
           <Sel value={radius} onChange={setRadius} options={radii} />
