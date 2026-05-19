@@ -127,39 +127,6 @@ export default function FiltersSidebar() {
       </button>
 
       <div key={resetKey}>
-      {/* Trusted dealers */}
-      <div className="flex items-center gap-2 mb-3">
-        <input type="checkbox" id="trusted" checked={trusted} onChange={e => setTrusted(e.target.checked)} className="w-3.5 h-3.5 accent-primary" />
-        <label htmlFor="trusted" className="text-sm text-foreground flex items-center gap-1 cursor-pointer flex-1">
-          <ShieldCheck className="w-3.5 h-3.5 text-green-600 flex-shrink-0" /> Trusted dealers only <span className="text-muted-foreground">(4,270)</span>
-        </label>
-        <Info className="w-3.5 h-3.5 text-muted-foreground flex-shrink-0" />
-      </div>
-
-      {/* Seller type */}
-      <Section title="Seller type">
-        <div className="flex flex-col gap-1.5">
-          {[['Dealership', '72,285'], ['Private seller', '23,082']].map(([label, count]) => (
-            <label key={label} className="flex items-center gap-2 cursor-pointer">
-              <input type="checkbox" checked={sellerTypes.includes(label)} onChange={() => toggleArr(setSellerTypes)(label)} className="w-3.5 h-3.5 accent-primary" />
-              <span className="text-sm text-foreground">{label} <span className="text-muted-foreground">({count})</span></span>
-            </label>
-          ))}
-        </div>
-      </Section>
-
-      {/* Rating */}
-      <Section title="Rating">
-        <div className="flex flex-col gap-1.5">
-          <label className="flex items-center gap-2 cursor-pointer">
-            <input type="checkbox" checked={ratings.includes(4)} onChange={() => toggleArr(setRatings)(4)} className="w-3.5 h-3.5 accent-primary" />
-            <div className="flex items-center gap-0.5">
-              {[1,2,3,4,5].map(i => <Star key={i} className={`w-3 h-3 ${i <= 4 ? 'fill-yellow-400 text-yellow-400' : 'text-gray-200 fill-gray-200'}`} />)}
-            </div>
-            <span className="text-sm text-muted-foreground">4+ rated sellers only (6,117)</span>
-          </label>
-        </div>
-      </Section>
 
       {/* Make, Model & Trim */}
       <Section title="Make, Model & Trim">
@@ -184,27 +151,6 @@ export default function FiltersSidebar() {
         <div className="grid grid-cols-2 gap-2">
           <Sel value={yearFrom} onChange={setYearFrom} options={years} placeholder="From" />
           <Sel value={yearTo} onChange={setYearTo} options={years} placeholder="To" />
-        </div>
-      </Section>
-
-      {/* Warranty & Verification */}
-      <Section title="Warranty & Verification" defaultOpen={false}>
-        <div className="flex flex-col gap-3">
-          <div>
-            <p className="text-xs text-muted-foreground mb-1">Warranty duration</p>
-            <Sel value={warranty} onChange={setWarranty} options={warrantyOptions} placeholder="Any duration or none" />
-          </div>
-          <div>
-            <p className="text-xs text-muted-foreground mb-1">Verifications</p>
-            <div className="flex flex-col gap-1.5">
-              {['Verified seller', 'CARTELL checked', 'Full service history'].map(v => (
-                <label key={v} className="flex items-center gap-2 cursor-pointer">
-                  <input type="checkbox" checked={verifications.includes(v)} onChange={() => toggleArr(setVerifications)(v)} className="w-3.5 h-3.5 accent-primary" />
-                  <span className="text-sm text-foreground">{v}</span>
-                </label>
-              ))}
-            </div>
-          </div>
         </div>
       </Section>
 
@@ -233,14 +179,6 @@ export default function FiltersSidebar() {
         </div>
       </Section>
 
-      {/* Location */}
-      <Section title="Location">
-        <div className="flex flex-col gap-2">
-          <Sel value={county} onChange={setCounty} options={counties} />
-          <Sel value={radius} onChange={setRadius} options={radii} />
-        </div>
-      </Section>
-
       {/* Fuel type */}
       <Section title="Fuel type">
         <div className="flex flex-col gap-1.5">
@@ -257,6 +195,14 @@ export default function FiltersSidebar() {
         </div>
       </Section>
 
+      {/* Engine size */}
+      <Section title="Engine size" defaultOpen={false}>
+        <div className="grid grid-cols-2 gap-2">
+          <Sel value={engineSizeFrom} onChange={setEngineSizeFrom} options={engineSizes} placeholder="From" />
+          <Sel value={engineSizeTo} onChange={setEngineSizeTo} options={engineSizes} placeholder="To" />
+        </div>
+      </Section>
+
       {/* Transmission */}
       <Section title="Transmission">
         <div className="flex flex-wrap gap-2">
@@ -266,6 +212,14 @@ export default function FiltersSidebar() {
               {t}
             </button>
           ))}
+        </div>
+      </Section>
+
+      {/* Location */}
+      <Section title="Location">
+        <div className="flex flex-col gap-2">
+          <Sel value={county} onChange={setCounty} options={counties} />
+          <Sel value={radius} onChange={setRadius} options={radii} />
         </div>
       </Section>
 
@@ -282,11 +236,60 @@ export default function FiltersSidebar() {
         </div>
       </Section>
 
-      {/* Engine size */}
-      <Section title="Engine size" defaultOpen={false}>
-        <div className="grid grid-cols-2 gap-2">
-          <Sel value={engineSizeFrom} onChange={setEngineSizeFrom} options={engineSizes} placeholder="From" />
-          <Sel value={engineSizeTo} onChange={setEngineSizeTo} options={engineSizes} placeholder="To" />
+      {/* Seller type */}
+      <Section title="Seller type">
+        <div className="flex flex-col gap-1.5">
+          {[['Dealership', '72,285'], ['Private seller', '23,082']].map(([label, count]) => (
+            <label key={label} className="flex items-center gap-2 cursor-pointer">
+              <input type="checkbox" checked={sellerTypes.includes(label)} onChange={() => toggleArr(setSellerTypes)(label)} className="w-3.5 h-3.5 accent-primary" />
+              <span className="text-sm text-foreground">{label} <span className="text-muted-foreground">({count})</span></span>
+            </label>
+          ))}
+        </div>
+      </Section>
+
+      {/* Warranty & Verification */}
+      <Section title="Warranty & Verification" defaultOpen={false}>
+        <div className="flex flex-col gap-3">
+          <div>
+            <p className="text-xs text-muted-foreground mb-1">Warranty duration</p>
+            <Sel value={warranty} onChange={setWarranty} options={warrantyOptions} placeholder="Any duration or none" />
+          </div>
+          <div>
+            <p className="text-xs text-muted-foreground mb-1">Verifications</p>
+            <div className="flex flex-col gap-1.5">
+              {['Verified seller', 'CARTELL checked', 'Full service history'].map(v => (
+                <label key={v} className="flex items-center gap-2 cursor-pointer">
+                  <input type="checkbox" checked={verifications.includes(v)} onChange={() => toggleArr(setVerifications)(v)} className="w-3.5 h-3.5 accent-primary" />
+                  <span className="text-sm text-foreground">{v}</span>
+                </label>
+              ))}
+            </div>
+          </div>
+        </div>
+      </Section>
+
+      {/* Trusted dealers */}
+      <div className="border-b border-border py-3">
+        <div className="flex items-center gap-2">
+          <input type="checkbox" id="trusted" checked={trusted} onChange={e => setTrusted(e.target.checked)} className="w-3.5 h-3.5 accent-primary" />
+          <label htmlFor="trusted" className="text-sm text-foreground flex items-center gap-1 cursor-pointer flex-1">
+            <ShieldCheck className="w-3.5 h-3.5 text-green-600 flex-shrink-0" /> Trusted dealers only <span className="text-muted-foreground">(4,270)</span>
+          </label>
+          <Info className="w-3.5 h-3.5 text-muted-foreground flex-shrink-0" />
+        </div>
+      </div>
+
+      {/* Rating */}
+      <Section title="Rating">
+        <div className="flex flex-col gap-1.5">
+          <label className="flex items-center gap-2 cursor-pointer">
+            <input type="checkbox" checked={ratings.includes(4)} onChange={() => toggleArr(setRatings)(4)} className="w-3.5 h-3.5 accent-primary" />
+            <div className="flex items-center gap-0.5">
+              {[1,2,3,4,5].map(i => <Star key={i} className={`w-3 h-3 ${i <= 4 ? 'fill-yellow-400 text-yellow-400' : 'text-gray-200 fill-gray-200'}`} />)}
+            </div>
+            <span className="text-sm text-muted-foreground">4+ rated sellers only (6,117)</span>
+          </label>
         </div>
       </Section>
 
