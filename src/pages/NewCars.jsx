@@ -125,12 +125,16 @@ const listings = [
 export default function NewCars() {
   const [search, setSearch] = useState('');
   const [savedIds, setSavedIds] = useState([]);
+  const [activeFilters, setActiveFilters] = useState({ make: '', model: '' });
 
   const toggleSaved = (id) => setSavedIds((prev) => prev.includes(id) ? prev.filter((x) => x !== id) : [...prev, id]);
 
-  const filtered = listings.filter((l) =>
-  !search || l.title.toLowerCase().includes(search.toLowerCase())
-  );
+  const filtered = listings.filter((l) => {
+    const searchMatch = !search || l.title.toLowerCase().includes(search.toLowerCase());
+    const makeMatch = !activeFilters.make || l.title.toLowerCase().includes(activeFilters.make.toLowerCase());
+    const modelMatch = !activeFilters.model || l.title.toLowerCase().includes(activeFilters.model.toLowerCase());
+    return searchMatch && makeMatch && modelMatch;
+  });
 
   return (
     <div className="min-h-screen bg-background">
@@ -167,14 +171,14 @@ export default function NewCars() {
         <div className="flex gap-6">
           {/* Sidebar */}
           <aside className="hidden lg:block w-80 flex-shrink-0 self-start sticky top-4 max-h-[calc(100vh-2rem)] overflow-y-auto">
-            <FiltersSidebar />
+            <FiltersSidebar onFilterChange={setActiveFilters} />
           </aside>
 
           {/* Listings */}
           <div className="flex-1 min-w-0">
             <div className="flex items-center justify-between mb-4">
               <p className="text-sm text-muted-foreground">
-                <span className="font-semibold text-foreground">{filtered.length.toLocaleString()}</span> cars in Ireland
+                <span className="font-semibold text-foreground">{filtered.length.toLocaleString()}</span> {activeFilters.make ? `${activeFilters.make}${activeFilters.model ? ' ' + activeFilters.model : ''} cars` : 'cars'} in Ireland
               </p>
               <div className="flex items-center gap-2 text-sm text-muted-foreground">
                 Sort by: <span className="font-semibold text-foreground">Best match</span>

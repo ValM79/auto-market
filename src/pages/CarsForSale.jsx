@@ -117,12 +117,16 @@ const carListings = [
 export default function CarsForSale() {
   const [search, setSearch] = useState('');
   const [savedIds, setSavedIds] = useState([]);
+  const [activeFilters, setActiveFilters] = useState({ make: '', model: '' });
 
   const toggleSave = (id) => setSavedIds(prev => prev.includes(id) ? prev.filter(i => i !== id) : [...prev, id]);
 
-  const filtered = carListings.filter(c =>
-    !search || c.title.toLowerCase().includes(search.toLowerCase()) || c.location.toLowerCase().includes(search.toLowerCase())
-  );
+  const filtered = carListings.filter(c => {
+    const searchMatch = !search || c.title.toLowerCase().includes(search.toLowerCase()) || c.location.toLowerCase().includes(search.toLowerCase());
+    const makeMatch = !activeFilters.make || c.title.toLowerCase().includes(activeFilters.make.toLowerCase());
+    const modelMatch = !activeFilters.model || c.title.toLowerCase().includes(activeFilters.model.toLowerCase());
+    return searchMatch && makeMatch && modelMatch;
+  });
 
   return (
     <div className="min-h-screen bg-[#f4f5f6]">
@@ -160,14 +164,16 @@ export default function CarsForSale() {
         <div className="flex gap-6">
           {/* Sidebar Filters */}
           <aside className="hidden lg:block w-64 flex-shrink-0 self-start sticky top-4 max-h-[calc(100vh-2rem)] overflow-y-auto">
-            <FiltersSidebar />
+            <FiltersSidebar onFilterChange={setActiveFilters} />
           </aside>
 
           {/* Listings */}
           <div className="flex-1 min-w-0">
             {/* Sort bar */}
             <div className="flex items-center justify-between mb-4">
-              <p className="text-sm text-foreground font-medium"><span className="font-bold">95,367</span> cars in Ireland</p>
+              <p className="text-sm text-foreground font-medium">
+                <span className="font-bold">{filtered.length}</span> {activeFilters.make ? `${activeFilters.make}${activeFilters.model ? ' ' + activeFilters.model : ''} cars` : 'cars'} in Ireland
+              </p>
               <div className="flex items-center gap-3">
                 <div className="flex items-center gap-1">
                   <LayoutList className="w-5 h-5 text-primary" />

@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Search, Star, ChevronDown, ChevronUp, Plus, ShieldCheck, Info, Clock } from 'lucide-react';
 import MakeSelector from './MakeSelector';
 import ModelSelector from './ModelSelector';
@@ -78,7 +78,7 @@ function Sel({ value, onChange, options, placeholder }) {
 
 }
 
-export default function FiltersSidebar() {
+export default function FiltersSidebar({ onFilterChange }) {
   const [resetKey, setResetKey] = useState(0);
   const [sellerTypes, setSellerTypes] = useState([]);
   const [ratings, setRatings] = useState([]);
@@ -138,6 +138,12 @@ export default function FiltersSidebar() {
   };
 
   const toggleArr = (setter) => (val) => setter((prev) => prev.includes(val) ? prev.filter((x) => x !== val) : [...prev, val]);
+
+  useEffect(() => {
+    if (onFilterChange) {
+      onFilterChange({ make: vehicles[0]?.make || '', model: vehicles[0]?.model || '' });
+    }
+  }, [vehicles]);
 
   return (
     <div className="text-base ml-1">
