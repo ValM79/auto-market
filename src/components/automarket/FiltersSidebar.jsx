@@ -141,7 +141,7 @@ export default function FiltersSidebar({ onFilterChange }) {
 
   useEffect(() => {
     if (onFilterChange) {
-      onFilterChange({ make: vehicles[0]?.make || '', model: vehicles[0]?.model || '' });
+      onFilterChange({ vehicles });
     }
   }, [vehicles]);
 

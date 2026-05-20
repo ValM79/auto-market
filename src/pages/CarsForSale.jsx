@@ -117,16 +117,32 @@ const carListings = [
 export default function CarsForSale() {
   const [search, setSearch] = useState('');
   const [savedIds, setSavedIds] = useState([]);
-  const [activeFilters, setActiveFilters] = useState({ make: '', model: '' });
+  const [activeFilters, setActiveFilters] = useState({ vehicles: [] });
 
   const toggleSave = (id) => setSavedIds(prev => prev.includes(id) ? prev.filter(i => i !== id) : [...prev, id]);
 
-  const filtered = carListings.filter(c => {
-    const searchMatch = !search || c.title.toLowerCase().includes(search.toLowerCase()) || c.location.toLowerCase().includes(search.toLowerCase());
-    const makeMatch = !activeFilters.make || c.title.toLowerCase().includes(activeFilters.make.toLowerCase());
-    const modelMatch = !activeFilters.model || c.title.toLowerCase().includes(activeFilters.model.toLowerCase());
-    return searchMatch && makeMatch && modelMatch;
-  });
+  // Build a list of active vehicle filters (ones with at least a make selected)
+  const activeVehicles = (activeFilters.vehicles || []).filter(v => v.make);
+
+  // If no vehicle filters active, show all (filtered by search)
+  // Otherwise group listings by each vehicle filter
+  const matchesSearch = (c) => !search || c.title.toLowerCase().includes(search.toLowerCase()) || c.location.toLowerCase().includes(search.toLowerCase());
+
+  const matchesVehicle = (c, v) => {
+    const makeMatch = !v.make || c.title.toLowerCase().includes(v.make.toLowerCase());
+    const modelMatch = !v.model || c.title.toLowerCase().includes(v.model.toLowerCase());
+    return makeMatch && modelMatch;
+  };
+
+  // Groups: if activeVehicles exist, one group per vehicle; else single group with all search-matched
+  const groups = activeVehicles.length > 0
+    ? activeVehicles.map(v => ({
+        label: [v.make, v.model].filter(Boolean).join(' '),
+        listings: carListings.filter(c => matchesSearch(c) && matchesVehicle(c, v)),
+      }))
+    : [{ label: null, listings: carListings.filter(matchesSearch) }];
+
+  const filtered = carListings.filter(matchesSearch);
 
   return (
     <div className="min-h-screen bg-[#f4f5f6]">
@@ -172,7 +188,7 @@ export default function CarsForSale() {
             {/* Sort bar */}
             <div className="flex items-center justify-between mb-4">
               <p className="text-sm text-foreground font-medium">
-                <span className="font-bold">{filtered.length}</span> {activeFilters.make ? `${activeFilters.make}${activeFilters.model ? ' ' + activeFilters.model : ''} cars` : 'cars'} in Ireland
+                <span className="font-bold">{groups.reduce((acc, g) => acc + g.listings.length, 0)}</span> cars in Ireland
               </p>
               <div className="flex items-center gap-3">
                 <div className="flex items-center gap-1">
@@ -192,17 +208,31 @@ export default function CarsForSale() {
               </div>
             </div>
 
-            <div className="flex flex-col gap-4">
-              {filtered.map(car => (
-                <ListingCard
-                  key={car.id}
-                  item={{ ...car, dealer: car.dealerName, price: `€${car.price.toLocaleString()}` }}
-                  saved={savedIds.includes(car.id)}
-                  onToggleSave={toggleSave}
-                  viewMode="list"
-                />
-              ))}
-            </div>
+            {groups.map((group, gi) => (
+              <div key={gi} className="mb-6">
+                {group.label && (
+                  <div className="flex items-center gap-3 mb-3">
+                    <h2 className="text-base font-bold text-foreground">{group.label}</h2>
+                    <span className="text-xs text-muted-foreground bg-secondary px-2 py-0.5 rounded-full">{group.listings.length} result{group.listings.length !== 1 ? 's' : ''}</span>
+                  </div>
+                )}
+                {group.listings.length === 0 ? (
+                  <p className="text-sm text-muted-foreground py-4">No listings found for <span className="font-semibold">{group.label}</span>.</p>
+                ) : (
+                  <div className="flex flex-col gap-4">
+                    {group.listings.map(car => (
+                      <ListingCard
+                        key={car.id}
+                        item={{ ...car, dealer: car.dealerName, price: `€${car.price.toLocaleString()}` }}
+                        saved={savedIds.includes(car.id)}
+                        onToggleSave={toggleSave}
+                        viewMode="list"
+                      />
+                    ))}
+                  </div>
+                )}
+              </div>
+            ))}
           </div>
         </div>
       </div>

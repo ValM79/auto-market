@@ -125,16 +125,27 @@ const listings = [
 export default function NewCars() {
   const [search, setSearch] = useState('');
   const [savedIds, setSavedIds] = useState([]);
-  const [activeFilters, setActiveFilters] = useState({ make: '', model: '' });
+  const [activeFilters, setActiveFilters] = useState({ vehicles: [] });
 
   const toggleSaved = (id) => setSavedIds((prev) => prev.includes(id) ? prev.filter((x) => x !== id) : [...prev, id]);
 
-  const filtered = listings.filter((l) => {
-    const searchMatch = !search || l.title.toLowerCase().includes(search.toLowerCase());
-    const makeMatch = !activeFilters.make || l.title.toLowerCase().includes(activeFilters.make.toLowerCase());
-    const modelMatch = !activeFilters.model || l.title.toLowerCase().includes(activeFilters.model.toLowerCase());
-    return searchMatch && makeMatch && modelMatch;
-  });
+  const activeVehicles = (activeFilters.vehicles || []).filter(v => v.make);
+
+  const matchesSearch = (l) => !search || l.title.toLowerCase().includes(search.toLowerCase());
+  const matchesVehicle = (l, v) => {
+    const makeMatch = !v.make || l.title.toLowerCase().includes(v.make.toLowerCase());
+    const modelMatch = !v.model || l.title.toLowerCase().includes(v.model.toLowerCase());
+    return makeMatch && modelMatch;
+  };
+
+  const groups = activeVehicles.length > 0
+    ? activeVehicles.map(v => ({
+        label: [v.make, v.model].filter(Boolean).join(' '),
+        listings: listings.filter(l => matchesSearch(l) && matchesVehicle(l, v)),
+      }))
+    : [{ label: null, listings: listings.filter(matchesSearch) }];
+
+  const filtered = listings.filter(matchesSearch);
 
   return (
     <div className="min-h-screen bg-background">
@@ -178,7 +189,7 @@ export default function NewCars() {
           <div className="flex-1 min-w-0">
             <div className="flex items-center justify-between mb-4">
               <p className="text-sm text-muted-foreground">
-                <span className="font-semibold text-foreground">{filtered.length.toLocaleString()}</span> {activeFilters.make ? `${activeFilters.make}${activeFilters.model ? ' ' + activeFilters.model : ''} cars` : 'cars'} in Ireland
+                <span className="font-semibold text-foreground">{groups.reduce((acc, g) => acc + g.listings.length, 0).toLocaleString()}</span> cars in Ireland
               </p>
               <div className="flex items-center gap-2 text-sm text-muted-foreground">
                 Sort by: <span className="font-semibold text-foreground">Best match</span>
@@ -186,25 +197,39 @@ export default function NewCars() {
               </div>
             </div>
 
-            <div className="flex flex-col gap-4">
-              {filtered.map((listing) => (
-                <ListingCard
-                  key={listing.id}
-                  item={{
-                    ...listing,
-                    dealer: listing.dealer,
-                    dealerLogo: listing.dealerLogo,
-                    image: listing.images[0],
-                    images: listing.images,
-                    sellerType: listing.dealerType,
-                    sellerRating: listing.dealerRating,
-                  }}
-                  saved={savedIds.includes(listing.id)}
-                  onToggleSave={toggleSaved}
-                  viewMode="list"
-                />
-              ))}
-            </div>
+            {groups.map((group, gi) => (
+              <div key={gi} className="mb-6">
+                {group.label && (
+                  <div className="flex items-center gap-3 mb-3">
+                    <h2 className="text-base font-bold text-foreground">{group.label}</h2>
+                    <span className="text-xs text-muted-foreground bg-secondary px-2 py-0.5 rounded-full">{group.listings.length} result{group.listings.length !== 1 ? 's' : ''}</span>
+                  </div>
+                )}
+                {group.listings.length === 0 ? (
+                  <p className="text-sm text-muted-foreground py-4">No listings found for <span className="font-semibold">{group.label}</span>.</p>
+                ) : (
+                  <div className="flex flex-col gap-4">
+                    {group.listings.map((listing) => (
+                      <ListingCard
+                        key={listing.id}
+                        item={{
+                          ...listing,
+                          dealer: listing.dealer,
+                          dealerLogo: listing.dealerLogo,
+                          image: listing.images[0],
+                          images: listing.images,
+                          sellerType: listing.dealerType,
+                          sellerRating: listing.dealerRating,
+                        }}
+                        saved={savedIds.includes(listing.id)}
+                        onToggleSave={toggleSaved}
+                        viewMode="list"
+                      />
+                    ))}
+                  </div>
+                )}
+              </div>
+            ))}
           </div>
         </div>
       </div>
