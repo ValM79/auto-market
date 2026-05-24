@@ -50,6 +50,7 @@ import ElectricHybridCars from './pages/ElectricHybridCars';
 import AllMotors from './pages/AllMotors';
 import BuyingTips from './pages/BuyingTips';
 import CarsByMake from './pages/CarsByMake';
+import BikesBicycles from './pages/BikesBicycles';
 // Add page imports here
 
 const AuthenticatedApp = () => {
@@ -122,6 +123,7 @@ const AuthenticatedApp = () => {
       <Route path="/all-motors" element={<AllMotors />} />
       <Route path="/buying-tips" element={<BuyingTips />} />
       <Route path="/cars-by-make/:make" element={<CarsByMake />} />
+      <Route path="/bikes-bicycles" element={<BikesBicycles />} />
       <Route path="*" element={<PageNotFound />} />
     </Routes>
   );

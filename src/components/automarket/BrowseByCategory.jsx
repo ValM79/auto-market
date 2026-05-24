@@ -26,7 +26,7 @@ const IMG = {
   rallyCar: 'https://media.base44.com/images/public/69ceb6b4f41f5a2cee0c7016/f262f4c3a_generated_image.png',
   carParts: 'https://media.base44.com/images/public/69ceb6b4f41f5a2cee0c7016/3211f3316_generated_image.png',
   carExtras: 'https://media.base44.com/images/public/69ceb6b4f41f5a2cee0c7016/ca07bfd68_generated_image.png',
-  bicycle: 'https://media.base44.com/images/public/69ceb6b4f41f5a2cee0c7016/cae380ef6_generated_image.png',
+  bicycle: 'https://media.base44.com/images/public/69ceb6b4f41f5a2cee0c7016/8ded1f6ff_generated_image.png',
 };
 
 const categories = [
@@ -50,6 +50,7 @@ const categories = [
 { label: 'Plant Machinery', imgKey: 'plant', highlight: true },
 { label: 'Motorbike Extras', imgKey: 'motorbikeExtras' },
 { label: 'Caravans', imgKey: 'caravan' },
+{ label: 'Bikes & Bicycles', imgKey: 'bicycle', highlight: true },
 ],
 [
 { label: 'Motorbikes', imgKey: 'motorbike', highlight: true },
@@ -59,9 +60,6 @@ const categories = [
 { label: 'Boats & Jet Skis', imgKey: 'boat' },
 { label: 'Boat Extras', imgKey: 'boatExtras' },
 { label: 'Other Motor', isOther: true },
-],
-[
-{ label: 'Bikes & Bicycles', imgKey: 'bicycle', highlight: true },
 ]];
 
 function CategoryIcon({ imgKey, isAllMotor, isOther }) {
@@ -109,6 +107,7 @@ function CategoryRow({ label, imgKey, highlight, isAllMotor, isOther }) {
     if (label === 'Boat Extras') navigate('/boat-extras');
     if (label === 'Other Motor') navigate('/other-motor');
     if (label === 'Commercials') navigate('/commercials');
+    if (label === 'Bikes & Bicycles') navigate('/bikes-bicycles');
   };
 
   return (
@@ -127,7 +126,7 @@ export default function BrowseByCategory() {
   return (
     <section className="max-w-7xl mx-auto px-4 py-12 md:py-16">
       <h2 className="text-2xl md:text-3xl font-bold text-foreground mb-8">Browse by category</h2>
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+      <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
         {categories.map((col, i) =>
         <div key={i} className="flex flex-col">
             {col.map((cat) =>
