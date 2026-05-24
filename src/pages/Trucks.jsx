@@ -7,91 +7,91 @@ import Footer from '../components/automarket/Footer';
 import SimpleFiltersSidebar from '../components/automarket/SimpleFiltersSidebar';
 
 const listings = [
-  {
-    id: 1,
-    dealer: 'Commercial Fleet Sales',
-    sellerType: 'Dealership',
-    sellerRating: 4.6,
-    spotlight: true,
-    title: '2019 Volvo FH16 540 Euro 6 Tractor Unit',
-    description: 'Low mileage, full service history, 6x2 configuration. Excellent working condition.',
-    timeAgo: '1 day',
-    location: 'Dublin, Dublin',
-    price: '€48,500',
-    photos: 12,
-    image: 'https://images.unsplash.com/photo-1533473359331-0ac8cc627c34?w=600&q=80',
-  },
-  {
-    id: 2,
-    dealer: null,
-    sellerType: 'Private Seller',
-    sellerRating: 4.2,
-    spotlight: true,
-    title: '2017 MAN TGX 26.480 – Perfect for Logistics',
-    description: '6x2 truck, Euro 6 engine, recently serviced. Ready for work.',
-    timeAgo: '2 days',
-    location: 'Cork City, Cork',
-    price: '€42,000',
-    photos: 10,
-    image: 'https://images.unsplash.com/photo-1579587413632-23ceb9fc402f?w=600&q=80',
-  },
-  {
-    id: 3,
-    dealer: 'Heavy Duty Vehicles IE',
-    sellerType: 'Dealership',
-    sellerRating: 4.8,
-    spotlight: false,
-    title: '2020 Scania R450 LA4X2MNA – Euro 6',
-    description: 'Low kilometers, dual tanks, air suspension. Certificate of origin included.',
-    timeAgo: '3 days',
-    location: 'Limerick, Limerick',
-    price: '€55,000',
-    photos: 14,
-    image: 'https://images.unsplash.com/photo-1558618047-f4e90b0a0d0f?w=600&q=80',
-  },
-  {
-    id: 4,
-    dealer: null,
-    sellerType: 'Private Seller',
-    sellerRating: null,
-    spotlight: false,
-    title: '2015 DAF CF85.430 8x4 Tipper Truck',
-    description: 'Tipper body, excellent for construction. Full MOT, regular maintenance.',
-    timeAgo: '4 days',
-    location: 'Galway, Galway',
-    price: '€38,500',
-    photos: 11,
-    image: 'https://images.unsplash.com/photo-1486312338219-ce68d2c6f44d?w=600&q=80',
-  },
-  {
-    id: 5,
-    dealer: 'Premium Commercial Fleet',
-    sellerType: 'Dealership',
-    sellerRating: 4.4,
-    spotlight: false,
-    title: '2018 Mercedes-Benz Actros 2551 – Refrigerated',
-    description: 'Thermoking fridge unit, Euro 6, perfect for food distribution.',
-    timeAgo: '5 days',
-    location: 'Waterford, Waterford',
-    price: '€52,000',
-    photos: 13,
-    image: 'https://images.unsplash.com/photo-1495521821757-a1efb6729352?w=600&q=80',
-  },
-  {
-    id: 6,
-    dealer: null,
-    sellerType: 'Private Seller',
-    sellerRating: 3.9,
-    spotlight: false,
-    title: '2016 Iveco Stralis 450 – Long Distance Ready',
-    description: 'Auto gearbox, cruise control, bunk cab. Ideal for haulage.',
-    timeAgo: '6 days',
-    location: 'Wexford, Wexford',
-    price: '€41,500',
-    photos: 9,
-    image: 'https://images.unsplash.com/photo-1552519507-da3b142c6e3d?w=600&q=80',
-  },
-];
+{
+  id: 1,
+  dealer: 'Commercial Fleet Sales',
+  sellerType: 'Dealership',
+  sellerRating: 4.6,
+  spotlight: true,
+  title: '2019 Volvo FH16 540 Euro 6 Tractor Unit',
+  description: 'Low mileage, full service history, 6x2 configuration. Excellent working condition.',
+  timeAgo: '1 day',
+  location: 'Dublin, Dublin',
+  price: '€48,500',
+  photos: 12,
+  image: 'https://images.unsplash.com/photo-1533473359331-0ac8cc627c34?w=600&q=80'
+},
+{
+  id: 2,
+  dealer: null,
+  sellerType: 'Private Seller',
+  sellerRating: 4.2,
+  spotlight: true,
+  title: '2017 MAN TGX 26.480 – Perfect for Logistics',
+  description: '6x2 truck, Euro 6 engine, recently serviced. Ready for work.',
+  timeAgo: '2 days',
+  location: 'Cork City, Cork',
+  price: '€42,000',
+  photos: 10,
+  image: 'https://images.unsplash.com/photo-1579587413632-23ceb9fc402f?w=600&q=80'
+},
+{
+  id: 3,
+  dealer: 'Heavy Duty Vehicles IE',
+  sellerType: 'Dealership',
+  sellerRating: 4.8,
+  spotlight: false,
+  title: '2020 Scania R450 LA4X2MNA – Euro 6',
+  description: 'Low kilometers, dual tanks, air suspension. Certificate of origin included.',
+  timeAgo: '3 days',
+  location: 'Limerick, Limerick',
+  price: '€55,000',
+  photos: 14,
+  image: 'https://images.unsplash.com/photo-1558618047-f4e90b0a0d0f?w=600&q=80'
+},
+{
+  id: 4,
+  dealer: null,
+  sellerType: 'Private Seller',
+  sellerRating: null,
+  spotlight: false,
+  title: '2015 DAF CF85.430 8x4 Tipper Truck',
+  description: 'Tipper body, excellent for construction. Full MOT, regular maintenance.',
+  timeAgo: '4 days',
+  location: 'Galway, Galway',
+  price: '€38,500',
+  photos: 11,
+  image: 'https://images.unsplash.com/photo-1486312338219-ce68d2c6f44d?w=600&q=80'
+},
+{
+  id: 5,
+  dealer: 'Premium Commercial Fleet',
+  sellerType: 'Dealership',
+  sellerRating: 4.4,
+  spotlight: false,
+  title: '2018 Mercedes-Benz Actros 2551 – Refrigerated',
+  description: 'Thermoking fridge unit, Euro 6, perfect for food distribution.',
+  timeAgo: '5 days',
+  location: 'Waterford, Waterford',
+  price: '€52,000',
+  photos: 13,
+  image: 'https://images.unsplash.com/photo-1495521821757-a1efb6729352?w=600&q=80'
+},
+{
+  id: 6,
+  dealer: null,
+  sellerType: 'Private Seller',
+  sellerRating: 3.9,
+  spotlight: false,
+  title: '2016 Iveco Stralis 450 – Long Distance Ready',
+  description: 'Auto gearbox, cruise control, bunk cab. Ideal for haulage.',
+  timeAgo: '6 days',
+  location: 'Wexford, Wexford',
+  price: '€41,500',
+  photos: 9,
+  image: 'https://images.unsplash.com/photo-1552519507-da3b142c6e3d?w=600&q=80'
+}];
+
 
 
 
@@ -100,14 +100,14 @@ export default function Trucks() {
   const [savedIds, setSavedIds] = useState([]);
   const [viewMode, setViewMode] = useState('list');
 
-  const toggleSave = (id) => setSavedIds(prev =>
-    prev.includes(id) ? prev.filter(i => i !== id) : [...prev, id]
+  const toggleSave = (id) => setSavedIds((prev) =>
+  prev.includes(id) ? prev.filter((i) => i !== id) : [...prev, id]
   );
 
-  const filtered = listings.filter(c =>
-    !search ||
-    c.title.toLowerCase().includes(search.toLowerCase()) ||
-    c.location.toLowerCase().includes(search.toLowerCase())
+  const filtered = listings.filter((c) =>
+  !search ||
+  c.title.toLowerCase().includes(search.toLowerCase()) ||
+  c.location.toLowerCase().includes(search.toLowerCase())
   );
 
   return (
@@ -128,16 +128,16 @@ export default function Trucks() {
 
         {/* Title + Search */}
         <div className="mb-6">
-          <h1 className="text-2xl sm:text-3xl font-bold text-foreground mb-3">Trucks in Ireland</h1>
+          <h1 className="text-2xl sm:text-3xl font-bold text-foreground mb-3">Trucks</h1>
           <div className="relative w-full">
             <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-muted-foreground" />
             <input
               type="text"
               value={search}
-              onChange={e => setSearch(e.target.value)}
+              onChange={(e) => setSearch(e.target.value)}
               placeholder="Search Trucks"
-              className="w-full bg-secondary/60 rounded-lg pl-9 pr-4 py-3 text-sm focus:outline-none focus:ring-2 focus:ring-primary/30"
-            />
+              className="w-full bg-secondary/60 rounded-lg pl-9 pr-4 py-3 text-sm focus:outline-none focus:ring-2 focus:ring-primary/30" />
+            
           </div>
         </div>
 
@@ -146,8 +146,8 @@ export default function Trucks() {
           <img
             src="https://media.base44.com/images/public/69ceb6b4f41f5a2cee0c7016/cd2b5117c_generated_image.png"
             alt="Trucks Banner"
-            className="w-full h-full object-cover"
-          />
+            className="w-full h-full object-cover" />
+          
         </div>
 
         <div className="flex gap-6">
@@ -185,28 +185,28 @@ export default function Trucks() {
             </div>
 
             <div className={viewMode === 'grid' ? 'grid grid-cols-2 gap-4' : 'flex flex-col gap-4'}>
-              {filtered.map(item => (
-                <ListingCard
-                  key={item.id}
-                  item={item}
-                  saved={savedIds.includes(item.id)}
-                  onToggleSave={toggleSave}
-                  viewMode={viewMode}
-                />
-              ))}
+              {filtered.map((item) =>
+              <ListingCard
+                key={item.id}
+                item={item}
+                saved={savedIds.includes(item.id)}
+                onToggleSave={toggleSave}
+                viewMode={viewMode} />
 
-              {filtered.length === 0 && (
-                <div className="text-center py-16 text-muted-foreground col-span-2">
+              )}
+
+              {filtered.length === 0 &&
+              <div className="text-center py-16 text-muted-foreground col-span-2">
                   <p className="text-lg font-medium">No trucks found</p>
                   <p className="text-sm mt-1">Try adjusting your search or filters</p>
                 </div>
-              )}
+              }
             </div>
           </div>
         </div>
       </div>
 
       <Footer />
-    </div>
-  );
+    </div>);
+
 }
