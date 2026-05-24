@@ -129,7 +129,7 @@ export default function BreakingRepairables() {
 
         {/* Title + Search */}
         <div className="mb-6">
-          <h1 className="text-2xl sm:text-3xl font-bold text-foreground mb-3">Breaking & Repairables in Ireland</h1>
+          <h1 className="text-2xl sm:text-3xl font-bold text-foreground mb-3">Breaking & Repairable</h1>
           <div className="relative w-full">
             <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-muted-foreground" />
             <input
@@ -185,15 +185,15 @@ export default function BreakingRepairables() {
             </div>
 
             <div className={viewMode === 'grid' ? 'grid grid-cols-2 gap-4' : 'flex flex-col gap-4'}>
-              {filtered.map((item) => (
-                <ListingCard
-                  key={item.id}
-                  item={item}
-                  saved={savedIds.includes(item.id)}
-                  onToggleSave={toggleSave}
-                  viewMode={viewMode}
-                />
-              ))}
+              {filtered.map((item) =>
+              <ListingCard
+                key={item.id}
+                item={item}
+                saved={savedIds.includes(item.id)}
+                onToggleSave={toggleSave}
+                viewMode={viewMode} />
+
+              )}
               {filtered.length === 0 &&
               <div className="text-center py-16 text-muted-foreground col-span-2">
                   <p className="text-lg font-medium">No breaking & repairables found</p>
