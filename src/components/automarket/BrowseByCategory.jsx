@@ -59,7 +59,7 @@ const categories = [
 { label: 'Quads', imgKey: 'quad', highlight: true },
 { label: 'Boats & Jet Skis', imgKey: 'boat' },
 { label: 'Boat Extras', imgKey: 'boatExtras' },
-{ label: 'Other Motor', isOther: true },
+{ label: 'Other', isOther: true },
 ]];
 
 function CategoryIcon({ imgKey, isAllMotor, isOther }) {
@@ -105,7 +105,7 @@ function CategoryRow({ label, imgKey, highlight, isAllMotor, isOther }) {
     if (label === 'Caravans') navigate('/caravans');
     if (label === 'Boats & Jet Skis') navigate('/boats');
     if (label === 'Boat Extras') navigate('/boat-extras');
-    if (label === 'Other Motor') navigate('/other-motor');
+    if (label === 'Other') navigate('/other-motor');
     if (label === 'Commercials') navigate('/commercials');
     if (label === 'Bikes & Bicycles') navigate('/bikes-bicycles');
   };
