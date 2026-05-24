@@ -7,91 +7,91 @@ import Footer from '../components/automarket/Footer';
 import SimpleFiltersSidebar from '../components/automarket/SimpleFiltersSidebar';
 
 const listings = [
-  {
-    id: 1,
-    dealer: null,
-    sellerType: 'Private Seller',
-    sellerRating: null,
-    spotlight: true,
-    title: 'Camper van',
-    description: 'Ford-based camper, fully equipped kitchen, cozy sleeping area.',
-    timeAgo: '9 hours',
-    location: 'Warrenpoint, Down',
-    price: '€21,000',
-    photos: 20,
-    image: 'https://images.unsplash.com/photo-1527519335468-447f819ea228?w=600&q=80',
-  },
-  {
-    id: 2,
-    dealer: null,
-    sellerType: 'Private Seller',
-    sellerRating: null,
-    spotlight: true,
-    title: 'Camper van',
-    description: 'Mercedes-based, automatic gearbox, modern interior design.',
-    timeAgo: '1 day',
-    location: 'Roscrea, Tipperary',
-    price: '€18,500',
-    photos: 18,
-    image: 'https://images.unsplash.com/photo-1469854523086-cc02fe5d8800?w=600&q=80',
-  },
-  {
-    id: 3,
-    dealer: 'Premium Campers IE',
-    sellerType: 'Dealership',
-    sellerRating: 4.7,
-    spotlight: false,
-    title: '2020 Hymer Camper – Luxury 4-Berth',
-    description: 'Shower, toilet, full kitchen, heating system. Immaculate condition.',
-    timeAgo: '2 days',
-    location: 'Dublin, Dublin',
-    price: '€32,500',
-    photos: 25,
-    image: 'https://images.unsplash.com/photo-1558618047-f4e90b0a0d0f?w=600&q=80',
-  },
-  {
-    id: 4,
-    dealer: null,
-    sellerType: 'Private Seller',
-    sellerRating: 3.9,
-    spotlight: false,
-    title: 'VW T4 Camper Conversion',
-    description: 'DIY conversion, pop-up roof, sleeping for 2. Great weekend getaway.',
-    timeAgo: '3 days',
-    location: 'Cork City, Cork',
-    price: '€7,800',
-    photos: 15,
-    image: 'https://images.unsplash.com/photo-1488646953014-85cb44e25828?w=600&q=80',
-  },
-  {
-    id: 5,
-    dealer: 'Motorhome & Camper Center',
-    sellerType: 'Dealership',
-    sellerRating: 4.9,
-    spotlight: false,
-    title: '2019 Fiat Ducato Motorhome – 6-Berth',
-    description: 'Diesel, central heating, large storage, satellite TV included.',
-    timeAgo: '1 day',
-    location: 'Galway, Galway',
-    price: '€28,900',
-    photos: 22,
-    image: 'https://images.unsplash.com/photo-1469854523086-cc02fe5d8800?w=600&q=80',
-  },
-  {
-    id: 6,
-    dealer: null,
-    sellerType: 'Private Seller',
-    sellerRating: 4.2,
-    spotlight: false,
-    title: 'Renault Master Camper – Compact',
-    description: 'Ideal for couples, 2-burner stove, compact bathroom. Low mileage.',
-    timeAgo: '4 days',
-    location: 'Limerick, Limerick',
-    price: '€11,200',
-    photos: 17,
-    image: 'https://images.unsplash.com/photo-1527519335468-447f819ea228?w=600&q=80',
-  },
-];
+{
+  id: 1,
+  dealer: null,
+  sellerType: 'Private Seller',
+  sellerRating: null,
+  spotlight: true,
+  title: 'Camper van',
+  description: 'Ford-based camper, fully equipped kitchen, cozy sleeping area.',
+  timeAgo: '9 hours',
+  location: 'Warrenpoint, Down',
+  price: '€21,000',
+  photos: 20,
+  image: 'https://images.unsplash.com/photo-1527519335468-447f819ea228?w=600&q=80'
+},
+{
+  id: 2,
+  dealer: null,
+  sellerType: 'Private Seller',
+  sellerRating: null,
+  spotlight: true,
+  title: 'Camper van',
+  description: 'Mercedes-based, automatic gearbox, modern interior design.',
+  timeAgo: '1 day',
+  location: 'Roscrea, Tipperary',
+  price: '€18,500',
+  photos: 18,
+  image: 'https://images.unsplash.com/photo-1469854523086-cc02fe5d8800?w=600&q=80'
+},
+{
+  id: 3,
+  dealer: 'Premium Campers IE',
+  sellerType: 'Dealership',
+  sellerRating: 4.7,
+  spotlight: false,
+  title: '2020 Hymer Camper – Luxury 4-Berth',
+  description: 'Shower, toilet, full kitchen, heating system. Immaculate condition.',
+  timeAgo: '2 days',
+  location: 'Dublin, Dublin',
+  price: '€32,500',
+  photos: 25,
+  image: 'https://images.unsplash.com/photo-1558618047-f4e90b0a0d0f?w=600&q=80'
+},
+{
+  id: 4,
+  dealer: null,
+  sellerType: 'Private Seller',
+  sellerRating: 3.9,
+  spotlight: false,
+  title: 'VW T4 Camper Conversion',
+  description: 'DIY conversion, pop-up roof, sleeping for 2. Great weekend getaway.',
+  timeAgo: '3 days',
+  location: 'Cork City, Cork',
+  price: '€7,800',
+  photos: 15,
+  image: 'https://images.unsplash.com/photo-1488646953014-85cb44e25828?w=600&q=80'
+},
+{
+  id: 5,
+  dealer: 'Motorhome & Camper Center',
+  sellerType: 'Dealership',
+  sellerRating: 4.9,
+  spotlight: false,
+  title: '2019 Fiat Ducato Motorhome – 6-Berth',
+  description: 'Diesel, central heating, large storage, satellite TV included.',
+  timeAgo: '1 day',
+  location: 'Galway, Galway',
+  price: '€28,900',
+  photos: 22,
+  image: 'https://images.unsplash.com/photo-1469854523086-cc02fe5d8800?w=600&q=80'
+},
+{
+  id: 6,
+  dealer: null,
+  sellerType: 'Private Seller',
+  sellerRating: 4.2,
+  spotlight: false,
+  title: 'Renault Master Camper – Compact',
+  description: 'Ideal for couples, 2-burner stove, compact bathroom. Low mileage.',
+  timeAgo: '4 days',
+  location: 'Limerick, Limerick',
+  price: '€11,200',
+  photos: 17,
+  image: 'https://images.unsplash.com/photo-1527519335468-447f819ea228?w=600&q=80'
+}];
+
 
 
 
@@ -100,14 +100,14 @@ export default function Campers() {
   const [savedIds, setSavedIds] = useState([]);
   const [viewMode, setViewMode] = useState('list');
 
-  const toggleSave = (id) => setSavedIds(prev =>
-    prev.includes(id) ? prev.filter(i => i !== id) : [...prev, id]
+  const toggleSave = (id) => setSavedIds((prev) =>
+  prev.includes(id) ? prev.filter((i) => i !== id) : [...prev, id]
   );
 
-  const filtered = listings.filter(c =>
-    !search ||
-    c.title.toLowerCase().includes(search.toLowerCase()) ||
-    c.location.toLowerCase().includes(search.toLowerCase())
+  const filtered = listings.filter((c) =>
+  !search ||
+  c.title.toLowerCase().includes(search.toLowerCase()) ||
+  c.location.toLowerCase().includes(search.toLowerCase())
   );
 
   return (
@@ -128,16 +128,16 @@ export default function Campers() {
 
         {/* Title + Search */}
         <div className="mb-6">
-          <h1 className="text-2xl sm:text-3xl font-bold text-foreground mb-3">Campers in Ireland</h1>
+          <h1 className="text-2xl sm:text-3xl font-bold text-foreground mb-3">Campers</h1>
           <div className="relative w-full">
             <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-muted-foreground" />
             <input
               type="text"
               value={search}
-              onChange={e => setSearch(e.target.value)}
+              onChange={(e) => setSearch(e.target.value)}
               placeholder="Search Campers"
-              className="w-full bg-secondary/60 rounded-lg pl-9 pr-4 py-3 text-sm focus:outline-none focus:ring-2 focus:ring-primary/30"
-            />
+              className="w-full bg-secondary/60 rounded-lg pl-9 pr-4 py-3 text-sm focus:outline-none focus:ring-2 focus:ring-primary/30" />
+            
           </div>
         </div>
 
@@ -180,28 +180,28 @@ export default function Campers() {
             </div>
 
             <div className={viewMode === 'grid' ? 'grid grid-cols-2 gap-4' : 'flex flex-col gap-4'}>
-              {filtered.map(item => (
-                <ListingCard
-                  key={item.id}
-                  item={item}
-                  saved={savedIds.includes(item.id)}
-                  onToggleSave={toggleSave}
-                  viewMode={viewMode}
-                />
-              ))}
+              {filtered.map((item) =>
+              <ListingCard
+                key={item.id}
+                item={item}
+                saved={savedIds.includes(item.id)}
+                onToggleSave={toggleSave}
+                viewMode={viewMode} />
 
-              {filtered.length === 0 && (
-                <div className="text-center py-16 text-muted-foreground col-span-2">
+              )}
+
+              {filtered.length === 0 &&
+              <div className="text-center py-16 text-muted-foreground col-span-2">
                   <p className="text-lg font-medium">No campers found</p>
                   <p className="text-sm mt-1">Try adjusting your search or filters</p>
                 </div>
-              )}
+              }
             </div>
           </div>
         </div>
       </div>
 
       <Footer />
-    </div>
-  );
+    </div>);
+
 }
