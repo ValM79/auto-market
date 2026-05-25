@@ -138,6 +138,7 @@ const emptyForm = {
   contactByMessage: true,
   contactByPhone: false,
   isTrader: false,
+  bikeSubsection: '',
 };
 
 export default function PlaceAd() {
@@ -399,6 +400,26 @@ export default function PlaceAd() {
                       <ChevronDown className="absolute right-3 top-1/2 -translate-y-1/2 w-4 h-4 text-muted-foreground pointer-events-none" />
                     </div>
                   </div>
+
+                  {/* Bikes & Bicycles Subsection */}
+                  {form.subsection === 'Bikes & Bicycles' && (
+                    <div>
+                      <label className="block text-sm font-medium text-foreground mb-1.5">Select Subsection</label>
+                      <div className="relative">
+                        <select
+                          value={form.bikeSubsection}
+                          onChange={(e) => setForm((f) => ({ ...f, bikeSubsection: e.target.value }))}
+                          className="w-full appearance-none border border-border rounded-lg px-4 py-3 text-sm bg-white focus:outline-none focus:ring-2 focus:ring-primary/30 focus:border-primary pr-9"
+                        >
+                          <option value="">Select a subsection...</option>
+                          {['Folding bike', 'Road Bike', 'Ladies bicycle', 'Electric bike', 'Mountain bike', 'Kids bike', 'E-Bike'].map((sub) => (
+                            <option key={sub} value={sub}>{sub}</option>
+                          ))}
+                        </select>
+                        <ChevronDown className="absolute right-3 top-1/2 -translate-y-1/2 w-4 h-4 text-muted-foreground pointer-events-none" />
+                      </div>
+                    </div>
+                  )}
 
                   {/* Ad Type */}
                   <div>
