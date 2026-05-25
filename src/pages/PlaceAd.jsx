@@ -171,7 +171,7 @@ export default function PlaceAd() {
   };
 
   const filteredSuggestions = form.category.trim()
-    ? allCategories.filter((c) => c.toLowerCase().includes(form.category.trim().toLowerCase()))
+    ? browseCategories.filter((c) => c.toLowerCase().includes(form.category.trim().toLowerCase()))
     : [];
 
   const currentSectionObj = sections.find((s) => s.label === form.section);
