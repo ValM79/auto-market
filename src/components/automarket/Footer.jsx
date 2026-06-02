@@ -28,7 +28,7 @@ export default function Footer() {
         <div className="flex flex-col lg:flex-row gap-16 mb-10">
 
           {/* Logo + App Store buttons */}
-          <div className="flex flex-col gap-5 min-w-[180px]">
+          <div className="flex flex-col gap-5 w-full lg:w-1/3">
             <div className="flex items-center gap-2">
               <span className="text-white text-xl font-semibold tracking-tight">Auto</span>
               <span className="text-white text-xl font-extrabold tracking-tight">Market</span>
@@ -76,7 +76,7 @@ export default function Footer() {
           </div>
 
           {/* Nav link columns */}
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-16 flex-1">
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-8 w-full lg:w-2/3">
             {footerSections.map((section) => (
               <div key={section.title}>
                 <h3 className="text-white font-semibold text-sm mb-4">{section.title}</h3>
