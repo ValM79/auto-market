@@ -118,7 +118,7 @@ function CategoryRow({ label, imgKey, highlight, isAllMotor, isOther }) {
           {label}
         </span>
       </div>
-      <ChevronRight className="w-4 h-4 text-muted-foreground group-hover:text-primary transition-colors" />
+
     </button>);
 }
 
