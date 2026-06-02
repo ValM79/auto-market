@@ -18,12 +18,12 @@ export default function Home() {
         <QuickLinks />
       </div>
       <HeroSearch />
+      <CarValuationSection />
       <BrowseByCategory />
       <CarListings />
       <HubsSection />
       <ReviewsSection />
       <ElectricSection />
-      <CarValuationSection />
       <Footer />
     </div>
   );
