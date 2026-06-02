@@ -3,7 +3,6 @@ import Navbar from '../components/automarket/Navbar';
 import QuickLinks from '../components/automarket/QuickLinks';
 import HeroSearch from '../components/automarket/HeroSearch';
 import BrowseByCategory from '../components/automarket/BrowseByCategory';
-import CarValuationSection from '../components/automarket/CarValuationSection';
 import Footer from '../components/automarket/Footer';
 import CarListings from '../components/automarket/CarListings';
 
@@ -15,7 +14,6 @@ export default function Home() {
         <QuickLinks />
       </div>
       <HeroSearch />
-      <CarValuationSection />
       <BrowseByCategory />
       <CarListings />
 
