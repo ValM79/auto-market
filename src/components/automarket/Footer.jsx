@@ -68,7 +68,7 @@ export default function Footer() {
             {/* Download our App */}
             <div>
               <p className="text-white text-sm font-semibold mb-3">Download our App</p>
-              <div className="flex flex-col gap-3 items-center justify-center w-full">
+              <div className="flex flex-col gap-1 items-center justify-center w-full">
                 <a href="#" className="hover:opacity-80 transition-opacity w-full">
                   <img src="https://developer.apple.com/assets/elements/badges/download-on-the-app-store.svg" alt="Download on the App Store" className="h-12 w-full object-contain" />
                 </a>
