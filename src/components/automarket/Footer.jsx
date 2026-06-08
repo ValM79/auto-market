@@ -80,26 +80,24 @@ export default function Footer() {
           </div>
 
           {/* Nav link columns */}
-          <div className="col-span-3 grid grid-cols-3 gap-x-4 gap-y-6">
-            {footerSections.map((section) =>
+          {footerSections.map((section) =>
             <div key={section.title}>
-                <h3 className="text-white font-semibold text-sm mb-4">{section.title}</h3>
-                <ul className="space-y-2.5">
-                  {section.links.map((link) => {
+              <h3 className="text-white font-semibold text-sm mb-4">{section.title}</h3>
+              <ul className="space-y-2.5">
+                {section.links.map((link) => {
                   let href = '#';
                   if (link === 'Cartell vehicle check') href = 'https://cartell.ie';
                   return (
                     <li key={link}>
-                        <a href={href} target={href !== '#' ? '_blank' : undefined} rel={href !== '#' ? 'noopener noreferrer' : undefined} className="text-sm hover:text-white transition-colors">
-                          {link}
-                        </a>
-                      </li>);
-
+                      <a href={href} target={href !== '#' ? '_blank' : undefined} rel={href !== '#' ? 'noopener noreferrer' : undefined} className="text-sm hover:text-white transition-colors">
+                        {link}
+                      </a>
+                    </li>
+                  );
                 })}
-                </ul>
-              </div>
-            )}
-          </div>
+              </ul>
+            </div>
+          )}
         </div>
 
         {/* Bottom bar */}
