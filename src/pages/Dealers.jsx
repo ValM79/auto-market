@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
-import Navbar from '../components/automarket/Navbar';
-import Footer from '../components/automarket/Footer';
+import Navbar from '../components/automax/Navbar';
+import Footer from '../components/automax/Footer';
 import { Link } from 'react-router-dom';
 import { MapPin, Car, RotateCcw, ChevronDown } from 'lucide-react';
 

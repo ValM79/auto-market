@@ -1,10 +1,10 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { Search, ChevronDown, ArrowLeft } from 'lucide-react';
-import ListingCard from '../components/automarket/ListingCard';
-import Navbar from '../components/automarket/Navbar';
-import Footer from '../components/automarket/Footer';
-import FiltersSidebar from '../components/automarket/FiltersSidebar';
+import ListingCard from '../components/automax/ListingCard';
+import Navbar from '../components/automax/Navbar';
+import Footer from '../components/automax/Footer';
+import FiltersSidebar from '../components/automax/FiltersSidebar';
 
 const dealerListings = [
   {

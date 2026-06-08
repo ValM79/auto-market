@@ -1,9 +1,9 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { Search, Star, ChevronDown, ChevronUp, ArrowLeft } from 'lucide-react';
-import ListingCard from '../components/automarket/ListingCard';
-import Navbar from '../components/automarket/Navbar';
-import Footer from '../components/automarket/Footer';
+import ListingCard from '../components/automax/ListingCard';
+import Navbar from '../components/automax/Navbar';
+import Footer from '../components/automax/Footer';
 
 const counties = ['All Ireland', 'Dublin', 'Cork', 'Galway', 'Limerick', 'Waterford', 'Kerry', 'Wexford', 'Wicklow', 'Meath', 'Kildare'];
 const radii = ['+5km', '+10km', '+20km', '+50km', '+100km', 'Nationwide'];

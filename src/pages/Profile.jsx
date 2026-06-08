@@ -2,8 +2,8 @@ import React, { useState } from 'react';
 import { ArrowLeft } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import { useAuth } from '@/lib/AuthContext';
-import Navbar from '../components/automarket/Navbar';
-import Footer from '../components/automarket/Footer';
+import Navbar from '../components/automax/Navbar';
+import Footer from '../components/automax/Footer';
 
 export default function Profile() {
   const { user } = useAuth();

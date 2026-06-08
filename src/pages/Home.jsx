@@ -1,9 +1,9 @@
 import React from 'react';
-import Navbar from '../components/automarket/Navbar';
-import HeroSearch from '../components/automarket/HeroSearch';
-import BrowseByCategory from '../components/automarket/BrowseByCategory';
-import Footer from '../components/automarket/Footer';
-import CarListings from '../components/automarket/CarListings';
+import Navbar from '../components/automax/Navbar';
+import HeroSearch from '../components/automax/HeroSearch';
+import BrowseByCategory from '../components/automax/BrowseByCategory';
+import Footer from '../components/automax/Footer';
+import CarListings from '../components/automax/CarListings';
 
 export default function Home() {
   return (

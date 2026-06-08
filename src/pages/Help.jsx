@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
 import { ArrowLeft, ChevronDown, ChevronUp, Mail, Phone, MessageSquare } from 'lucide-react';
 import { Link } from 'react-router-dom';
-import Navbar from '../components/automarket/Navbar';
-import Footer from '../components/automarket/Footer';
+import Navbar from '../components/automax/Navbar';
+import Footer from '../components/automax/Footer';
 
 export default function Help() {
   const [expandedFaq, setExpandedFaq] = useState(null);
@@ -80,7 +80,7 @@ export default function Help() {
             </div>
             <p className="text-sm text-muted-foreground mb-4">Reach us via email</p>
             <a href="mailto:support@automarket.ie" className="text-sm text-primary hover:underline font-medium">
-              support@automarket.ie
+              support@automax.ie
             </a>
           </div>
 

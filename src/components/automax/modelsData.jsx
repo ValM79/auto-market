@@ -1,0 +1,1 @@
+export { modelsByMake, popularModelsByMake } from '../automarket/modelsData';

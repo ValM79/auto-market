@@ -1,9 +1,9 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { Search, Heart, Camera, ChevronDown, Star, LayoutList, LayoutGrid, ArrowLeft } from 'lucide-react';
-import Navbar from '../components/automarket/Navbar';
-import Footer from '../components/automarket/Footer';
-import FiltersSidebar from '../components/automarket/FiltersSidebar';
+import Navbar from '../components/automax/Navbar';
+import Footer from '../components/automax/Footer';
+import FiltersSidebar from '../components/automax/FiltersSidebar';
 
 const allMotorListings = [
   {
