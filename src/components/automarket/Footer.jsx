@@ -2,7 +2,7 @@ import React from 'react';
 
 const footerSections = [
 {
-  title: "About a",
+  title: "About us",
   links: ['Used cars', 'New cars', 'Electric cars', 'Hybrid cars', 'Body types', 'Car finance']
 },
 {
