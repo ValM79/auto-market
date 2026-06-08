@@ -1,6 +1,6 @@
 import React from 'react';
-import Navbar from '../components/automax/Navbar';
-import Footer from '../components/automax/Footer';
+import Navbar from '../components/automarket/Navbar';
+import Footer from '../components/automarket/Footer';
 
 const rentalPlaces = [
   {

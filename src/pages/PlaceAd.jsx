@@ -1,9 +1,9 @@
 import React, { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { ArrowLeft, Upload, X, Youtube, User, Mail, Phone, MapPin, Tag, FileText, DollarSign, ChevronDown, Plus, Pencil, Car, Info } from 'lucide-react';
-import Navbar from '../components/automax/Navbar';
-import Footer from '../components/automax/Footer';
-import ImageViewer from '../components/automax/ImageViewer';
+import Navbar from '../components/automarket/Navbar';
+import Footer from '../components/automarket/Footer';
+import ImageViewer from '../components/automarket/ImageViewer';
 import { base44 } from '@/api/base44Client';
 import { useAuth } from '@/lib/AuthContext';
 
@@ -941,7 +941,7 @@ export default function PlaceAd() {
               Sell Now
             </button>
             <p className="text-xs text-muted-foreground text-center">
-              By clicking "Sell Now", you agree to the AutoMax{' '}
+              By clicking "Sell Now", you agree to the AutoMarket{' '}
               <span className="text-primary hover:underline cursor-pointer">Terms & Conditions</span>.
             </p>
             <button onClick={handleReset} className="text-sm text-primary hover:underline text-center mt-1">

@@ -1,9 +1,9 @@
 import React, { useState } from 'react';
 import { Link, useParams } from 'react-router-dom';
 import { Search, Heart, Camera, ChevronDown, Star, ArrowLeft } from 'lucide-react';
-import Navbar from '../components/automax/Navbar';
-import Footer from '../components/automax/Footer';
-import FiltersSidebar from '../components/automax/FiltersSidebar';
+import Navbar from '../components/automarket/Navbar';
+import Footer from '../components/automarket/Footer';
+import FiltersSidebar from '../components/automarket/FiltersSidebar';
 
 const carsByMake = {
   'abarth': [

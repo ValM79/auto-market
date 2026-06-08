@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
 import { ArrowLeft, Trash2, History } from 'lucide-react';
 import { Link } from 'react-router-dom';
-import Navbar from '../components/automax/Navbar';
-import Footer from '../components/automax/Footer';
+import Navbar from '../components/automarket/Navbar';
+import Footer from '../components/automarket/Footer';
 
 export default function BrowsingHistory() {
   const [browsingHistory, setBrowsingHistory] = useState([

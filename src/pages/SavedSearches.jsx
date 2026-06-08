@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { Heart, Camera, ArrowLeft } from 'lucide-react';
-import Navbar from '../components/automax/Navbar';
-import Footer from '../components/automax/Footer';
+import Navbar from '../components/automarket/Navbar';
+import Footer from '../components/automarket/Footer';
 
 export default function SavedSearches() {
   const [savedItems, setSavedItems] = useState([]);

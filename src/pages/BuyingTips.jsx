@@ -1,15 +1,15 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { Search, ChevronRight, Lightbulb } from 'lucide-react';
-import Navbar from '../components/automax/Navbar';
-import Footer from '../components/automax/Footer';
+import Navbar from '../components/automarket/Navbar';
+import Footer from '../components/automarket/Footer';
 
 const buyingGuides = {
   'Start Buying': [
     { title: 'General Advice for Buyers', link: '#' },
     { title: 'Buying Safely - Top Tips for Buyers & Sellers', link: '#' },
     { title: 'Buying from a Private Seller - Know Your Rights', link: '#' },
-    { title: 'AutoMax Saved Searches', link: '#' },
+    { title: 'AutoMarket Saved Searches', link: '#' },
     { title: 'Why Can\'t I use the "Show Phone Number" Button?', link: '#' },
     { title: 'I Can\'t Reach a Seller\'s Phone Number', link: '#' },
   ],
@@ -18,7 +18,7 @@ const buyingGuides = {
     { title: 'Checklist for Buying a Car', link: '#' },
     { title: 'Car Mileage & What You Need To Know', link: '#' },
     { title: 'Understanding Vehicle Write-Off Categories', link: '#' },
-    { title: 'Free History Checks on AutoMax Cars', link: '#' },
+    { title: 'Free History Checks on AutoMarket Cars', link: '#' },
     { title: 'Market Price Insights', link: '#' },
   ],
   'Inspection & Testing': [
@@ -73,7 +73,7 @@ export default function BuyingTips() {
           <div>
             {/* Breadcrumb */}
             <div className="flex items-center gap-2 text-sm text-muted-foreground mb-4">
-              <Link to="/" className="hover:text-primary transition-colors">AutoMax</Link>
+              <Link to="/" className="hover:text-primary transition-colors">AutoMarket</Link>
               <span>›</span>
               <span className="text-foreground font-medium">Buying Tips</span>
             </div>
