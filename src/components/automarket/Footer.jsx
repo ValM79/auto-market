@@ -21,10 +21,10 @@ export default function Footer() {
       <div className="max-w-7xl mx-auto px-8 py-10">
 
         {/* Top section: Logo + Links + App Download */}
-        <div className="flex flex-col lg:flex-row gap-8 mb-8">
+        <div className="flex flex-col lg:flex-row gap-16 mb-8">
 
           {/* Logo + App Store buttons */}
-          <div className="flex flex-col gap-4 w-full lg:w-1/5 items-center text-center">
+          <div className="flex flex-col gap-4 w-full lg:w-56 flex-shrink-0 items-center text-center">
             <div className="flex items-center gap-2">
               <span className="text-white text-xl font-extrabold tracking-tight">AutoMax</span>
               <img
@@ -80,7 +80,7 @@ export default function Footer() {
           </div>
 
           {/* Nav link columns */}
-          <div className="grid grid-cols-2 md:grid-cols-3 gap-6 w-full lg:w-4/5">
+          <div className="grid grid-cols-2 md:grid-cols-3 gap-x-16 gap-y-6 flex-1">
             {footerSections.map((section) =>
             <div key={section.title}>
                 <h3 className="text-white font-semibold text-sm mb-4">{section.title}</h3>
