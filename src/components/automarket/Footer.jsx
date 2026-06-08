@@ -2,10 +2,6 @@ import React from 'react';
 
 const footerSections = [
 {
-  title: "AutoMax",
-  links: ['About us', 'Careers', 'Advertising', 'Contact us', 'Terms', 'Privacy policy']
-},
-{
   title: "Information",
   links: ['Used cars', 'New cars', 'Electric cars', 'Hybrid cars', 'Body types', 'Car finance']
 },
@@ -15,7 +11,7 @@ const footerSections = [
 },
 {
   title: 'Company',
-  links: ['Place an ad', 'Selling tips', 'Car valuation', 'Dealer login', 'Help centre']
+  links: ['About us', 'Advertising', 'Careers', 'Contact us', 'Terms', 'Privacy policy']
 }];
 
 
@@ -84,7 +80,7 @@ export default function Footer() {
           </div>
 
           {/* Nav link columns */}
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-6 w-full lg:w-4/5">
+          <div className="grid grid-cols-2 md:grid-cols-3 gap-6 w-full lg:w-4/5">
             {footerSections.map((section) =>
             <div key={section.title}>
                 <h3 className="text-white font-semibold text-sm mb-4">{section.title}</h3>
