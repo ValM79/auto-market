@@ -21,7 +21,7 @@ export default function Footer() {
       <div className="max-w-7xl mx-auto px-8 py-10">
 
         {/* Top section: Logo + Links + App Download */}
-        <div className="grid grid-cols-1 lg:grid-cols-4 gap-8 mb-8">
+        <div className="grid grid-cols-1 lg:grid-cols-[2fr_1fr_1fr_1fr] gap-8 mb-8">
 
           {/* Logo + App Store buttons */}
           <div className="flex flex-col gap-4 items-center text-center">
