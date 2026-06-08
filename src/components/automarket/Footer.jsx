@@ -28,7 +28,7 @@ export default function Footer() {
         <div className="flex flex-col lg:flex-row gap-8 mb-8">
 
           {/* Logo + App Store buttons */}
-          <div className="flex flex-col gap-4 w-full lg:w-1/5">
+          <div className="flex flex-col gap-4 w-full lg:w-1/5 items-center text-center">
             <div className="flex items-center gap-2">
               <span className="text-white text-xl font-extrabold tracking-tight">AutoMax</span>
               <img
@@ -46,7 +46,7 @@ export default function Footer() {
             </div>
 
             {/* Social icons */}
-            <div className="flex items-center gap-3">
+            <div className="flex items-center gap-3 justify-center">
               {/* Facebook */}
               <a href="#" className="text-white/60 hover:text-white transition-colors">
                 <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg>
@@ -72,7 +72,7 @@ export default function Footer() {
             {/* Download our App */}
             <div>
               <p className="text-white text-sm font-semibold mb-3">Download our App</p>
-              <div className="flex flex-row gap-2 items-center">
+              <div className="flex flex-row gap-2 items-center justify-center">
                 <a href="#" className="hover:opacity-80 transition-opacity">
                   <img src="https://developer.apple.com/assets/elements/badges/download-on-the-app-store.svg" alt="Download on the App Store" className="h-10" />
                 </a>
