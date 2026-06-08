@@ -22,13 +22,13 @@ const footerSections = [
 export default function Footer() {
   return (
     <footer className="bg-foreground text-white/70">
-      <div className="max-w-7xl mx-auto px-16 py-16">
+      <div className="max-w-7xl mx-auto px-8 py-10">
 
         {/* Top section: Logo + Links + App Download */}
-        <div className="flex flex-col lg:flex-row gap-16 mb-10">
+        <div className="flex flex-col lg:flex-row gap-8 mb-8">
 
           {/* Logo + App Store buttons */}
-          <div className="flex flex-col gap-5 w-full lg:w-1/3">
+          <div className="flex flex-col gap-4 w-full lg:w-1/5">
             <div className="flex items-center gap-2">
               <span className="text-white text-xl font-extrabold tracking-tight">AutoMax</span>
               <img
@@ -75,7 +75,7 @@ export default function Footer() {
           </div>
 
           {/* Nav link columns */}
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-8 w-full lg:w-2/3">
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-6 w-full lg:w-4/5">
             {footerSections.map((section) =>
             <div key={section.title}>
                 <h3 className="text-white font-semibold text-sm mb-4">{section.title}</h3>
