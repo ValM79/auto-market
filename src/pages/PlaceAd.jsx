@@ -4,6 +4,7 @@ import { ArrowLeft, Upload, X, Youtube, User, Mail, Phone, MapPin, Tag, FileText
 import Navbar from '../components/automarket/Navbar';
 import Footer from '../components/automarket/Footer';
 import ImageViewer from '../components/automarket/ImageViewer';
+import AdPackageSelector from '../components/automarket/AdPackageSelector';
 import { base44 } from '@/api/base44Client';
 import { useAuth } from '@/lib/AuthContext';
 
@@ -931,6 +932,9 @@ export default function PlaceAd() {
               </div>
             </div>
           </Section>
+
+          {/* Ad Package / Payment */}
+          <AdPackageSelector />
 
           {/* Actions */}
           <div className="flex flex-col gap-3 pb-10">
