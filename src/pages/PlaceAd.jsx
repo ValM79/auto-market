@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { ArrowLeft, Upload, X, Youtube, User, Mail, Phone, MapPin, Tag, FileText, DollarSign, ChevronDown, Plus, Pencil, Car, Info } from 'lucide-react';
 import Navbar from '../components/automarket/Navbar';
@@ -145,6 +145,13 @@ const emptyForm = {
 export default function PlaceAd() {
   const { user } = useAuth();
   const navigate = useNavigate();
+
+  // Read package limits from URL params (set after Stripe redirect)
+  const urlParams = new URLSearchParams(window.location.search);
+  const urlListingDays = parseInt(urlParams.get('listingDays') || '72', 10);
+  const urlMaxPhotos = parseInt(urlParams.get('maxPhotos') || '20', 10);
+  const [packageLimits, setPackageLimits] = useState({ listingDays: urlListingDays, maxPhotos: urlMaxPhotos });
+
   const [form, setForm] = useState({
     ...emptyForm,
     fullName: user?.full_name || '',
@@ -224,7 +231,7 @@ export default function PlaceAd() {
 
   const handleFiles = (files) => {
     const validFiles = Array.from(files).filter((f) => f.type.startsWith('image/'));
-    const remaining = 20 - photos.length;
+    const remaining = packageLimits.maxPhotos - photos.length;
     const toAdd = validFiles.slice(0, remaining).map((f) => ({
       file: f,
       preview: URL.createObjectURL(f)
@@ -447,7 +454,7 @@ export default function PlaceAd() {
           </Section>
 
           {/* Section 2: Photos */}
-          <Section id="photos-section" title="Photos and Video" icon={<Upload className="w-5 h-5" />} subtitle="Up to 20 photos">
+          <Section id="photos-section" title="Photos and Video" icon={<Upload className="w-5 h-5" />} subtitle={`Up to ${packageLimits.maxPhotos} photos`}>
             {/* Photo grid */}
             {photos.length > 0 &&
             <div className="mb-4">
@@ -469,7 +476,7 @@ export default function PlaceAd() {
                       </div>
                     </button>
                 )}
-                  {photos.length < 20 &&
+                  {photos.length < packageLimits.maxPhotos &&
                 <div
                   onDragOver={(e) => {e.preventDefault();setDragOver(true);}}
                   onDragLeave={() => setDragOver(false)}
@@ -478,7 +485,7 @@ export default function PlaceAd() {
                   
                       <label className="cursor-pointer flex flex-col items-center justify-center w-full h-full">
                         <Plus className="w-8 h-8 text-primary mb-1" />
-                        <span className="text-sm text-muted-foreground font-medium">{photos.length}/20</span>
+                        <span className="text-sm text-muted-foreground font-medium">{photos.length}/{packageLimits.maxPhotos}</span>
                         <input key={photos.length} type="file" multiple accept="image/*" className="hidden" onChange={(e) => handleFiles(e.target.files)} />
                       </label>
                     </div>
@@ -500,7 +507,7 @@ export default function PlaceAd() {
                   <input key="initial" type="file" multiple accept="image/*" className="hidden" onChange={(e) => handleFiles(e.target.files)} />
                 </label>
                 <span className="text-muted-foreground text-sm"> or drag and drop</span>
-                <p className="text-xs text-muted-foreground mt-2">Up to 20 images · .jpg, .png and .gif files</p>
+                <p className="text-xs text-muted-foreground mt-2">Up to {packageLimits.maxPhotos} images · .jpg, .png and .gif files</p>
               </div>
             }
 
@@ -934,7 +941,7 @@ export default function PlaceAd() {
           </Section>
 
           {/* Ad Package / Payment */}
-          <AdPackageSelector />
+          <AdPackageSelector onPackageSelected={(pkg) => setPackageLimits({ listingDays: pkg.listingDays || 72, maxPhotos: pkg.maxPhotos || 20 })} />
 
           {/* Actions */}
           <div className="flex flex-col gap-3 pb-10">

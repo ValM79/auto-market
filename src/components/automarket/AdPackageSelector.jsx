@@ -7,9 +7,11 @@ const packages = [
   name: "Basic",
   price: '€5',
   priceId: 'price_1TgUNLLQxQzBuaMVLYYB7kul',
-  adViews: 1, // 1 out of 4 bars
+  adViews: 1,
+  listingDays: 60,
+  maxPhotos: 10,
   features: [
-  '72 day listing',
+  '60 day listing',
   'Up to 10 photos']
 
 },
@@ -59,9 +61,14 @@ export default function AdPackageSelector({ onPackageSelected }) {
 
     setLoading(pkg.name);
     try {
+      if (onPackageSelected) {
+        onPackageSelected({ name: pkg.name, listingDays: pkg.listingDays, maxPhotos: pkg.maxPhotos });
+      }
       const res = await base44.functions.invoke('createCheckoutSession', {
         priceId: pkg.priceId,
-        packageName: pkg.name
+        packageName: pkg.name,
+        listingDays: pkg.listingDays,
+        maxPhotos: pkg.maxPhotos
       });
       if (res.data.url) {
         window.location.href = res.data.url;
