@@ -9,10 +9,10 @@ const packages = [
   priceId: 'price_1TgUNLLQxQzBuaMVLYYB7kul',
   adViews: 1,
   listingDays: 60,
-  maxPhotos: 10,
+  maxPhotos: 12,
   features: [
   '60 day listing',
-  'Up to 10 photos']
+  'Up to 12 photos']
 
 },
 {
@@ -21,9 +21,11 @@ const packages = [
   priceId: 'price_1TgUNLLQxQzBuaMV0tXw1AVC',
   recommended: true,
   adViews: 2,
+  listingDays: 72,
+  maxPhotos: 12,
   features: [
   '72 day listing',
-  'Up to 15 photos',
+  'Up to 12 photos',
   'Ad performance analytics',
   '4x bumps to the top',
   { text: '(1 per week)', note: true }]
@@ -34,9 +36,11 @@ const packages = [
   price: '€12',
   priceId: 'price_1TgUNLLQxQzBuaMVV5Xq2fzw',
   adViews: 3,
+  listingDays: 72,
+  maxPhotos: 12,
   features: [
   '72 day listing',
-  'Up to 20 photos',
+  'Up to 12 photos',
   'Ad performance analytics',
   '8x bumps to the top',
   { text: '(2 per week)', note: true },
@@ -89,9 +93,6 @@ export default function AdPackageSelector({ onPackageSelected, onBeforeCheckout 
     <div className="bg-white border border-border rounded-2xl p-6 shadow-sm">
       <div className="flex items-center justify-between mb-6">
         <h2 className="text-lg font-bold text-foreground">Select  your ad option</h2>
-        <span className="text-sm font-semibold cursor-pointer hover:underline text-[hsl(var(--primary))]">Learn more about our new ad packages
-
-        </span>
       </div>
 
       <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
