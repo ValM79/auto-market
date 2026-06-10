@@ -4,7 +4,7 @@ import { base44 } from '@/api/base44Client';
 
 const packages = [
 {
-  name: "Basic",
+  name: "Standard",
   price: '€5',
   priceId: 'price_1TgUNLLQxQzBuaMVLYYB7kul',
   adViews: 1, // 1 out of 4 bars
