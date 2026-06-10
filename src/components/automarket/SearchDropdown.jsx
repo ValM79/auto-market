@@ -197,11 +197,11 @@ export default function SearchDropdown({ onClose }) {
             </div>
           )}
 
-          {/* Popular searches */}
-          <div className="px-4 pt-2 pb-3 border-t border-border mt-1">
-            <p className="text-xs text-muted-foreground font-semibold uppercase tracking-wide mb-2">Popular searches</p>
+          {/* Suggested searches */}
+          <div className={`px-4 pt-2 pb-3 ${history.length > 0 ? 'border-t border-border mt-1' : ''}`}>
+            <p className="text-xs text-muted-foreground font-semibold uppercase tracking-wide mb-2">Suggested</p>
             <div className="flex flex-wrap gap-1.5">
-              {['Cars for Sale', 'Motorbikes', 'Vans & Commercials', 'Kids Bikes', 'Car Parts', 'Electric Cars'].map(tag => (
+              {['Kawasaki Ninja 400', 'Toyota Corolla', 'BMW 3 Series', 'Ford Transit', 'Electric Cars', 'VW Golf'].map(tag => (
                 <button
                   key={tag}
                   onClick={() => setQuery(tag)}
