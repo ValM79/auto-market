@@ -6,7 +6,7 @@ const packages = [
 {
   name: "Basic",
   price: '€5',
-  priceId: 'price_1TgUNLLQxQzBuaMVLYYB7kul',
+  priceId: 'price_1TgseALQxQzBuaMVeshJckr1',
   adViews: 1,
   listingDays: 60,
   maxPhotos: 12,
@@ -18,7 +18,7 @@ const packages = [
 {
   name: "Standard",
   price: '€7',
-  priceId: 'price_1TgUNLLQxQzBuaMV0tXw1AVC',
+  priceId: 'price_1TgseALQxQzBuaMV0BaeiSxb',
   recommended: true,
   adViews: 2,
   listingDays: 72,
@@ -34,7 +34,7 @@ const packages = [
 {
   name: 'Premium',
   price: '€12',
-  priceId: 'price_1TgUNLLQxQzBuaMVV5Xq2fzw',
+  priceId: 'price_1TgseALQxQzBuaMV70sBeWh4',
   adViews: 3,
   listingDays: 72,
   maxPhotos: 12,
