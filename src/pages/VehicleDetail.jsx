@@ -5,6 +5,7 @@ import Navbar from '../components/automarket/Navbar';
 import Footer from '../components/automarket/Footer';
 import { useFavorites } from '../hooks/useFavorites';
 import SellerReviews from '../components/automarket/SellerReviews';
+import VehicleStats from '../components/automarket/VehicleStats';
 
 function StarRating({ rating }) {
   return (
@@ -128,6 +129,9 @@ export default function VehicleDetail() {
                 </div>
               </div>
             </div>
+            {/* Market Insights */}
+            <VehicleStats car={car} />
+
             {/* Reviews */}
             <SellerReviews />
           </div>
