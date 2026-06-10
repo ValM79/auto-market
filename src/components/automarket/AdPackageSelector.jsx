@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Check } from 'lucide-react';
+
 import { base44 } from '@/api/base44Client';
 
 const packages = [
@@ -44,21 +44,7 @@ const packages = [
 }];
 
 
-const AdViewBar = ({ filled, total = 4 }) =>
-<div className="flex gap-1 mb-4">
-    {Array.from({ length: total }).map((_, i) =>
-  <div
-    key={i}
-    className={`h-1.5 flex-1 rounded-full ${
-    i < filled ?
-    i === 0 ?
-    'bg-orange-400' :
-    'bg-green-500' :
-    'bg-gray-200'}`
-    } />
 
-  )}
-  </div>;
 
 
 export default function AdPackageSelector({ onPackageSelected }) {
@@ -102,22 +88,13 @@ export default function AdPackageSelector({ onPackageSelected }) {
         {packages.map((pkg) =>
         <div
           key={pkg.name}
-          className={`relative border rounded-xl flex flex-col overflow-hidden ${
-          pkg.recommended ? 'border-foreground' : 'border-border'}`
-          }>
+          className="relative border border-border rounded-xl flex flex-col overflow-hidden">
           
-            {pkg.recommended &&
-          <div className="bg-foreground text-white text-xs font-bold text-center py-1.5 tracking-wide">
-                Recommended
-              </div>
-          }
+  
 
             <div className="p-5 flex flex-col flex-1">
               <p className="text-sm text-foreground font-medium mb-1">{pkg.name}</p>
               <p className="text-3xl font-bold text-foreground mb-4">{pkg.price}</p>
-
-              <p className="text-xs text-muted-foreground mb-1">Ad Views</p>
-              <AdViewBar filled={pkg.adViews} />
 
               <ul className="flex flex-col gap-1.5 flex-1 mb-6">
                 {pkg.features.map((f, i) => {
@@ -126,14 +103,12 @@ export default function AdPackageSelector({ onPackageSelected }) {
                     <li key={i} className="text-xs text-muted-foreground ml-5 -mt-1">
                         {f.text}
                       </li>);
-
                 }
                 return (
                   <li key={i} className="flex items-center gap-2 text-sm text-foreground">
-                      <Check className="w-4 h-4 text-green-500 flex-shrink-0" />
+                      <span className="w-1.5 h-1.5 rounded-full bg-foreground flex-shrink-0 inline-block" />
                       {f}
                     </li>);
-
               })}
               </ul>
 
