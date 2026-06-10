@@ -4,6 +4,7 @@ import { ArrowLeft, Heart, Camera, Star, ShieldCheck, Phone, Mail, User, Message
 import Navbar from '../components/automarket/Navbar';
 import Footer from '../components/automarket/Footer';
 import { useFavorites } from '../hooks/useFavorites';
+import SellerReviews from '../components/automarket/SellerReviews';
 
 function StarRating({ rating }) {
   return (
@@ -127,6 +128,8 @@ export default function VehicleDetail() {
                 </div>
               </div>
             </div>
+            {/* Reviews */}
+            <SellerReviews />
           </div>
 
           {/* Right: Contact Form */}
