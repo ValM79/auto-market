@@ -116,7 +116,7 @@ export default function Navbar() {
             <div key="Buy" className="relative" ref={buyMenuRef}>
                   <button
                 onClick={() => setShowBuyMenu((v) => !v)}
-                className="text-[hsl(var(--foreground))] px-3 text-sm font-medium hover:text-destructive flex items-center gap-1 transition-colors underline py-2">
+                className="text-[hsl(var(--foreground))] px-3 text-sm font-medium hover:underline flex items-center gap-1 transition-colors py-2">
                     Buy <ChevronDown className="w-3.5 h-3.5" />
                   </button>
                   {showBuyMenu &&
@@ -150,7 +150,7 @@ export default function Navbar() {
             <div key="Sell" className="relative" ref={sellMenuRef}>
                   <button
                 onClick={() => setShowSellMenu((v) => !v)}
-                className="text-[hsl(var(--foreground))] px-3 py-2 text-sm font-medium hover:text-destructive flex items-center gap-1 transition-colors">
+                className="text-[hsl(var(--foreground))] px-3 py-2 text-sm font-medium hover:underline flex items-center gap-1 transition-colors">
                     Sell <ChevronDown className="w-3.5 h-3.5" />
                   </button>
                   {showSellMenu &&
@@ -170,7 +170,7 @@ export default function Navbar() {
             <div key="Dealers" className="relative" ref={dealersMenuRef}>
                   <button
                 onClick={() => setShowDealersMenu((v) => !v)}
-                className="text-[hsl(var(--foreground))] px-3 py-2 text-sm font-medium hover:text-destructive flex items-center gap-1 transition-colors">
+                className="text-[hsl(var(--foreground))] px-3 py-2 text-sm font-medium hover:underline flex items-center gap-1 transition-colors">
                     Dealers <ChevronDown className="w-3.5 h-3.5" />
                   </button>
                   {showDealersMenu &&
@@ -200,14 +200,14 @@ export default function Navbar() {
             <Link
               key="Car Rent"
               to="/car-rent"
-              className="text-[hsl(var(--foreground))] px-3 py-2 text-sm font-medium hover:text-destructive flex items-center gap-1 transition-colors">
+              className="text-[hsl(var(--foreground))] px-3 py-2 text-sm font-medium hover:underline flex items-center gap-1 transition-colors">
                   Car Rent
                 </Link> :
             link.label === 'Car insurance' ?
             <Link
               key="Car insurance"
               to="/car-insurance"
-              className="text-[hsl(var(--foreground))] px-3 py-2 text-sm font-medium hover:text-destructive flex items-center gap-1 transition-colors">
+              className="text-[hsl(var(--foreground))] px-3 py-2 text-sm font-medium hover:underline flex items-center gap-1 transition-colors">
                   Car insurance
                 </Link> :
 
