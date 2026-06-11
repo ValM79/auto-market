@@ -168,6 +168,7 @@ export default function PlaceAd() {
   const [editingVehicle, setEditingVehicle] = useState(false);
   const [showSuggestions, setShowSuggestions] = useState(false);
   const [formErrors, setFormErrors] = useState({});
+  const [sellError, setSellError] = useState('');
   const [selectedPackage, setSelectedPackage] = useState(null);
   const [checkoutLoading, setCheckoutLoading] = useState(false);
 
@@ -252,6 +253,9 @@ export default function PlaceAd() {
     setPhotos([]);
     setVideo(null);
     setCategoryStarted(false);
+    setFormErrors({});
+    setSellError('');
+    setSelectedPackage(null);
   };
 
   const handleFiles = (files) => {
@@ -985,16 +989,25 @@ export default function PlaceAd() {
             <button className="w-full bg-primary text-white font-bold py-4 rounded-xl text-base hover:bg-primary/90 transition-colors">
               Preview Ad
             </button>
+            {sellError && (
+              <div className="flex items-center gap-2 bg-destructive/10 border border-destructive/30 text-destructive text-sm font-medium px-4 py-3 rounded-lg">
+                <span>⚠</span> {sellError}
+              </div>
+            )}
             <button
               onClick={async () => {
-                if (!validateForm()) return;
+                setSellError('');
+                const valid = validateForm();
+                if (!valid) {
+                  setSellError('Please complete all missing fields before continuing.');
+                  return;
+                }
                 if (!selectedPackage) {
-                  alert('Please select an ad package before proceeding.');
-                  document.querySelector('[class*="AdPackageSelector"], .bg-white.border.border-border.rounded-2xl')?.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                  setSellError('Please select an ad package before proceeding.');
                   return;
                 }
                 if (window.self !== window.top) {
-                  alert('Checkout is only available from the published app, not the preview.');
+                  setSellError('Checkout is only available from the published app, not the preview.');
                   return;
                 }
                 setCheckoutLoading(true);
@@ -1011,10 +1024,10 @@ export default function PlaceAd() {
                   if (res.data.url) {
                     window.location.href = res.data.url;
                   } else {
-                    alert('Could not start checkout. Please try again.');
+                    setSellError('Could not start checkout. Please try again.');
                   }
                 } catch (e) {
-                  alert('Could not start checkout. Please try again.');
+                  setSellError('Could not start checkout. Please try again.');
                 } finally {
                   setCheckoutLoading(false);
                 }
