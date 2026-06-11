@@ -366,7 +366,7 @@ export default function PlaceAd() {
           <div>
             <h1 className="font-bold text-foreground text-lg">Let's start with the basics</h1>
           </div>
-          <button onClick={handleReset} className="text-sm text-primary hover:underline flex items-center gap-1">
+          <button onClick={handleReset} className="text-primary hover:underline flex items-center gap-1 text-base">
             Reset Form
           </button>
         </div>
@@ -591,7 +591,7 @@ export default function PlaceAd() {
                     <input
                       type="text"
                       value={form.registration}
-                      onChange={(e) => { set('registration')(e); setFormErrors((err) => ({ ...err, registration: undefined })); }}
+                      onChange={(e) => {set('registration')(e);setFormErrors((err) => ({ ...err, registration: undefined }));}}
                       placeholder="e.g 201D0123"
                       className={`w-full border rounded-lg px-4 py-3 text-sm pl-14 focus:outline-none focus:ring-2 focus:ring-primary/30 focus:border-primary ${formErrors.registration ? 'border-destructive' : 'border-border'}`} />
                     
@@ -621,7 +621,7 @@ export default function PlaceAd() {
                   <input
                     type="text"
                     value={form.mileage}
-                    onChange={(e) => { const raw = e.target.value.replace(/[^0-9]/g, ''); const formatted = raw ? Number(raw).toLocaleString('en-IE') : ''; setForm(f => ({ ...f, mileage: formatted })); }}
+                    onChange={(e) => {const raw = e.target.value.replace(/[^0-9]/g, '');const formatted = raw ? Number(raw).toLocaleString('en-IE') : '';setForm((f) => ({ ...f, mileage: formatted }));}}
                     placeholder="e.g. 12,000"
                     className="flex-1 border border-border rounded-lg px-4 py-3 text-sm focus:outline-none focus:ring-2 focus:ring-primary/30 focus:border-primary" />
                   
@@ -850,7 +850,7 @@ export default function PlaceAd() {
                 <input
                   type="text"
                   value={form.title}
-                  onChange={(e) => { set('title')(e); setFormErrors((err) => ({ ...err, title: undefined })); }}
+                  onChange={(e) => {set('title')(e);setFormErrors((err) => ({ ...err, title: undefined }));}}
                   placeholder="Insert your ad title"
                   className={`w-full border rounded-lg px-4 py-3 text-sm focus:outline-none focus:ring-2 focus:ring-primary/30 focus:border-primary ${formErrors.title ? 'border-destructive' : 'border-border'}`} />
                 {formErrors.title ? <p className="text-xs text-destructive mt-1 flex items-center gap-1"><span>⚠</span>{formErrors.title}</p> : <p className="text-xs text-muted-foreground mt-1">Your ad title will be shown in search results</p>}
@@ -860,7 +860,7 @@ export default function PlaceAd() {
                 <label className="block text-sm font-medium text-foreground mb-1.5">Description <span className="text-destructive">*</span></label>
                 <textarea
                   value={form.description}
-                  onChange={(e) => { set('description')(e); setFormErrors((err) => ({ ...err, description: undefined })); }}
+                  onChange={(e) => {set('description')(e);setFormErrors((err) => ({ ...err, description: undefined }));}}
                   maxLength={2000}
                   rows={5}
                   placeholder="Tell us about your ad. Make sure to give us as much information as possible."
@@ -876,7 +876,7 @@ export default function PlaceAd() {
                   <input
                     type="text"
                     value={form.price}
-                    onChange={(e) => { const raw = e.target.value.replace(/[^0-9]/g, ''); const formatted = raw ? Number(raw).toLocaleString('en-IE') : ''; setForm(f => ({ ...f, price: formatted })); setFormErrors((err) => ({ ...err, price: undefined })); }}
+                    onChange={(e) => {const raw = e.target.value.replace(/[^0-9]/g, '');const formatted = raw ? Number(raw).toLocaleString('en-IE') : '';setForm((f) => ({ ...f, price: formatted }));setFormErrors((err) => ({ ...err, price: undefined }));}}
                     placeholder="e.g. 1,200"
                     className={`w-full border rounded-lg px-4 py-3 text-sm pl-7 focus:outline-none focus:ring-2 focus:ring-primary/30 focus:border-primary ${formErrors.price ? 'border-destructive' : 'border-border'}`} />
                 </div>
@@ -892,7 +892,7 @@ export default function PlaceAd() {
                 <label className="block text-sm font-medium text-foreground mb-1.5">Full Name <span className="text-destructive">*</span></label>
                 <div className="relative">
                   <User className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-muted-foreground" />
-                  <input type="text" value={form.fullName} onChange={(e) => { set('fullName')(e); setFormErrors((err) => ({ ...err, fullName: undefined })); }} placeholder="Your full name"
+                  <input type="text" value={form.fullName} onChange={(e) => {set('fullName')(e);setFormErrors((err) => ({ ...err, fullName: undefined }));}} placeholder="Your full name"
                   className={`w-full border rounded-lg px-4 py-3 text-sm pl-9 focus:outline-none focus:ring-2 focus:ring-primary/30 focus:border-primary ${formErrors.fullName ? 'border-destructive' : 'border-border'}`} />
                 </div>
                 {formErrors.fullName && <p className="text-xs text-destructive mt-1 flex items-center gap-1"><span>⚠</span>{formErrors.fullName}</p>}
@@ -902,7 +902,7 @@ export default function PlaceAd() {
                 <label className="block text-sm font-medium text-foreground mb-1.5">E-mail <span className="text-destructive">*</span></label>
                 <div className="relative">
                   <Mail className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-muted-foreground" />
-                  <input type="email" value={form.email} onChange={(e) => { set('email')(e); setFormErrors((err) => ({ ...err, email: undefined })); }} placeholder="you@example.com"
+                  <input type="email" value={form.email} onChange={(e) => {set('email')(e);setFormErrors((err) => ({ ...err, email: undefined }));}} placeholder="you@example.com"
                   className={`w-full border rounded-lg px-4 py-3 text-sm pl-9 focus:outline-none focus:ring-2 focus:ring-primary/30 focus:border-primary ${formErrors.email ? 'border-destructive' : 'border-border'}`} />
                 </div>
                 {formErrors.email && <p className="text-xs text-destructive mt-1 flex items-center gap-1"><span>⚠</span>{formErrors.email}</p>}
@@ -912,7 +912,7 @@ export default function PlaceAd() {
                 <label className="block text-sm font-medium text-foreground mb-1.5">Phone <span className="text-destructive">*</span></label>
                 <div className="relative">
                   <Phone className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-muted-foreground" />
-                  <input type="tel" value={form.phone} onChange={(e) => { setForm(f => ({ ...f, phone: e.target.value.replace(/[^0-9 +\-()]/g, '') })); setFormErrors((err) => ({ ...err, phone: undefined })); }} placeholder="e.g. 086 123 4567"
+                  <input type="tel" value={form.phone} onChange={(e) => {setForm((f) => ({ ...f, phone: e.target.value.replace(/[^0-9 +\-()]/g, '') }));setFormErrors((err) => ({ ...err, phone: undefined }));}} placeholder="e.g. 086 123 4567"
                   className={`w-full border rounded-lg px-4 py-3 text-sm pl-9 focus:outline-none focus:ring-2 focus:ring-primary/30 focus:border-primary ${formErrors.phone ? 'border-destructive' : 'border-border'}`} />
                 </div>
                 {formErrors.phone && <p className="text-xs text-destructive mt-1 flex items-center gap-1"><span>⚠</span>{formErrors.phone}</p>}
@@ -932,7 +932,7 @@ export default function PlaceAd() {
                 <div id="field-area">
                   <label className="block text-sm font-medium text-foreground mb-1.5">Area <span className="text-destructive">*</span></label>
                   <div className="relative">
-                    <select value={form.area} onChange={(e) => { set('area')(e); setFormErrors((err) => ({ ...err, area: undefined })); }}
+                    <select value={form.area} onChange={(e) => {set('area')(e);setFormErrors((err) => ({ ...err, area: undefined }));}}
                     className={`w-full appearance-none border rounded-lg px-4 py-3 text-sm bg-white focus:outline-none focus:ring-2 focus:ring-primary/30 focus:border-primary pr-9 ${formErrors.area ? 'border-destructive' : 'border-border'}`}>
                       <option value="">Select area...</option>
                       {areas.map((a) => <option key={a}>{a}</option>)}
@@ -981,19 +981,19 @@ export default function PlaceAd() {
             onPackageSelected={(pkg) => {
               setSelectedPackage(pkg);
               setPackageLimits({ listingDays: pkg.listingDays, maxPhotos: pkg.maxPhotos });
-            }}
-          />
+            }} />
+          
 
           {/* Actions */}
           <div className="flex flex-col gap-3 pb-10">
             <button className="w-full bg-primary text-white font-bold py-4 rounded-xl text-base hover:bg-primary/90 transition-colors">
               Preview Ad
             </button>
-            {sellError && (
-              <div className="flex items-center gap-2 bg-destructive/10 border border-destructive/30 text-destructive text-sm font-medium px-4 py-3 rounded-lg">
+            {sellError &&
+            <div className="flex items-center gap-2 bg-destructive/10 border border-destructive/30 text-destructive text-sm font-medium px-4 py-3 rounded-lg">
                 <span>⚠</span> {sellError}
               </div>
-            )}
+            }
             <button
               onClick={async () => {
                 setSellError('');
@@ -1019,7 +1019,7 @@ export default function PlaceAd() {
                     maxPhotos: selectedPackage.maxPhotos,
                     bumps: selectedPackage.bumps,
                     bumpIntervalWeeks: selectedPackage.bumpIntervalWeeks,
-                    spotlightDays: selectedPackage.spotlightDays,
+                    spotlightDays: selectedPackage.spotlightDays
                   });
                   if (res.data.url) {
                     window.location.href = res.data.url;
@@ -1040,7 +1040,7 @@ export default function PlaceAd() {
               By clicking "Sell Now", you agree to the AutoMarket{' '}
               <span className="text-primary hover:underline cursor-pointer">Terms & Conditions</span>.
             </p>
-            <button onClick={handleReset} className="text-sm text-primary hover:underline text-center mt-1">
+            <button onClick={handleReset} className="text-primary hover:underline text-center mt-1 text-base">
               Reset Form
             </button>
           </div>
