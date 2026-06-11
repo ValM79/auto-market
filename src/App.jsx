@@ -53,6 +53,7 @@ import CarsByMake from './pages/CarsByMake';
 import BikesBicycles from './pages/BikesBicycles';
 import Favorites from './pages/Favorites';
 import VehicleDetail from './pages/VehicleDetail';
+import TermsAndConditions from './pages/TermsAndConditions';
 // Add page imports here
 
 const AuthenticatedApp = () => {
@@ -128,6 +129,7 @@ const AuthenticatedApp = () => {
       <Route path="/bikes-bicycles" element={<BikesBicycles />} />
       <Route path="/favorites" element={<Favorites />} />
       <Route path="/vehicle/:id" element={<VehicleDetail />} />
+      <Route path="/terms-and-conditions" element={<TermsAndConditions />} />
       <Route path="*" element={<PageNotFound />} />
     </Routes>
   );

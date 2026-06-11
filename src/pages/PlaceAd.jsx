@@ -378,7 +378,7 @@ export default function PlaceAd() {
           <div>
             <h1 className="font-bold text-foreground text-lg">Complete your ad.</h1>
           </div>
-          <button onClick={handleReset} className="text-primary hover:underline flex items-center gap-1 text-base">
+          <button onClick={handleReset} className="border border-foreground text-foreground font-semibold px-6 py-2 rounded-lg hover:bg-secondary transition-colors text-sm">
             Reset Form
           </button>
         </div>
@@ -1051,10 +1051,10 @@ export default function PlaceAd() {
               {checkoutLoading ? 'Redirecting to payment...' : 'Sell Now'}
             </button>
             <p className="text-xs text-muted-foreground text-center">
-              By clicking "Sell Now", you agree to the AutoMarket{' '}
-              <span className="text-primary hover:underline cursor-pointer">Terms & Conditions</span>.
+              By clicking "Sell Now", you agree to the AutoMax{' '}
+              <Link to="/terms-and-conditions" className="text-primary hover:underline">Terms & Conditions</Link>.
             </p>
-            <button onClick={handleReset} className="text-primary hover:underline text-center mt-1 text-base">
+            <button onClick={handleReset} className="w-full border border-foreground text-foreground font-semibold py-3 rounded-xl hover:bg-secondary transition-colors text-sm">
               Reset Form
             </button>
           </div>
