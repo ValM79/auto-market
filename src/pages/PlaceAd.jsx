@@ -4,7 +4,7 @@ import { ArrowLeft, Upload, X, Youtube, User, Mail, Phone, MapPin, Tag, FileText
 import Navbar from '../components/automarket/Navbar';
 import Footer from '../components/automarket/Footer';
 import ImageViewer from '../components/automarket/ImageViewer';
-import AdPackageSelector, { packages } from '../components/automarket/AdPackageSelector';
+import AdPackageSelector, { packages, FLAT_FEE_CATEGORIES, flatFeePackage } from '../components/automarket/AdPackageSelector';
 import AdPreview from '../components/automarket/AdPreview';
 import { base44 } from '@/api/base44Client';
 import { useAuth } from '@/lib/AuthContext';
@@ -173,6 +173,18 @@ export default function PlaceAd() {
   const [sellError, setSellError] = useState('');
   const [selectedPackage, setSelectedPackage] = useState(null);
   const [checkoutLoading, setCheckoutLoading] = useState(false);
+
+  // Reset package when switching between flat-fee and tiered categories
+  useEffect(() => {
+    const isFlatFee = FLAT_FEE_CATEGORIES.includes(form.subsection);
+    if (isFlatFee) {
+      setSelectedPackage(flatFeePackage);
+      setPackageLimits({ listingDays: flatFeePackage.listingDays, maxPhotos: flatFeePackage.maxPhotos });
+    } else if (selectedPackage?.priceId === flatFeePackage.priceId) {
+      setSelectedPackage(null);
+      setPackageLimits({ listingDays: 72, maxPhotos: 12 });
+    }
+  }, [form.subsection]);
 
   const validateForm = () => {
     const errors = {};
@@ -990,6 +1002,7 @@ export default function PlaceAd() {
           {/* Ad Package / Payment */}
           <AdPackageSelector
             selectedPackage={selectedPackage}
+            isFlatFee={FLAT_FEE_CATEGORIES.includes(form.subsection)}
             onPackageSelected={(pkg) => {
               setSelectedPackage(pkg);
               setPackageLimits({ listingDays: pkg.listingDays, maxPhotos: pkg.maxPhotos });
