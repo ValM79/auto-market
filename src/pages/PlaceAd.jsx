@@ -174,10 +174,12 @@ export default function PlaceAd() {
   const [selectedPackage, setSelectedPackage] = useState(null);
   const [checkoutLoading, setCheckoutLoading] = useState(false);
 
+  const isBikeCategory = form.subsection === 'Bikes & Bicycles';
+
   const validateForm = () => {
     const errors = {};
     if (!form.subsection) errors.subsection = 'Please select a section';
-    if (!form.registration.trim()) errors.registration = 'This field is required';
+    if (!isBikeCategory && !form.registration.trim()) errors.registration = 'This field is required';
     if (!form.title.trim()) errors.title = 'Please enter a title for your ad';
     if (!form.description.trim()) errors.description = 'Please enter a description for your ad';
     if (!form.price.trim()) errors.price = 'Please enter a price for your ad';
@@ -590,8 +592,8 @@ export default function PlaceAd() {
             </div>
           </Section>
 
-          {/* Section 3: Vehicle Details */}
-          <Section title="Vehicle Details" icon={<Car className="w-5 h-5" />} subtitle="Get all your vehicle details instantly">
+          {/* Section 3: Vehicle Details — hidden for Bikes & Bicycles */}
+          {!isBikeCategory && <Section title="Vehicle Details" icon={<Car className="w-5 h-5" />} subtitle="Get all your vehicle details instantly">
             <div className="flex flex-col gap-4">
               <div>
                 <label className="block text-sm font-medium text-foreground mb-1.5">Enter Vehicle Registration <span className="text-destructive">*</span></label>
@@ -852,7 +854,7 @@ export default function PlaceAd() {
                 </div>
               }
             </div>
-          </Section>
+          </Section>}
 
           {/* Section 4: Ad Details */}
           <Section title="Ad Details" icon={<FileText className="w-5 h-5" />}>
@@ -989,6 +991,7 @@ export default function PlaceAd() {
 
           {/* Ad Package / Payment */}
           <AdPackageSelector
+            isBikeCategory={isBikeCategory}
             selectedPackage={selectedPackage}
             onPackageSelected={(pkg) => {
               setSelectedPackage(pkg);

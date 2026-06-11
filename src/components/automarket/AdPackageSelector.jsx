@@ -50,13 +50,62 @@ const packages = [
   { text: '(5 days in the top spot)', note: true }]
 }];
 
+const bikePackages = [
+{
+  name: "Basic",
+  price: '€1',
+  priceId: 'price_1TgseALQxQzBuaMVeshJckr1',
+  listingDays: 30,
+  maxPhotos: 12,
+  bumps: 0,
+  bumpIntervalWeeks: null,
+  spotlightDays: 0,
+  features: [
+  '30 day listing',
+  'Up to 12 photos']
+},
+{
+  name: "Standard",
+  price: '€2',
+  priceId: 'price_1TgseALQxQzBuaMV0BaeiSxb',
+  listingDays: 60,
+  maxPhotos: 12,
+  bumps: 2,
+  bumpIntervalWeeks: 4,
+  spotlightDays: 0,
+  features: [
+  '60 day listing',
+  'Up to 12 photos',
+  '2x bumps to the top',
+  { text: '(1 every 4 weeks automatically)', note: true }]
+},
+{
+  name: 'Premium',
+  price: '€3',
+  priceId: 'price_1Th4JaLQxQzBuaMVUlbbybA3',
+  listingDays: 90,
+  maxPhotos: 12,
+  bumps: 3,
+  bumpIntervalWeeks: 3,
+  spotlightDays: 5,
+  features: [
+  '90 day listing',
+  'Up to 12 photos',
+  'Ad performance analytics',
+  '3x bumps to the top',
+  { text: '(1 every 3 weeks automatically)', note: true },
+  'Spotlight',
+  { text: '(5 days in the top spot)', note: true }]
+}];
+
 
 
 
 
 export { packages };
 
-export default function AdPackageSelector({ selectedPackage, onPackageSelected }) {
+export default function AdPackageSelector({ selectedPackage, onPackageSelected, isBikeCategory }) {
+  const activePackages = isBikeCategory ? bikePackages : packages;
   return (
     <div className="bg-white border border-border rounded-2xl p-6 shadow-sm">
       <div className="flex items-center justify-between mb-6">
@@ -64,7 +113,7 @@ export default function AdPackageSelector({ selectedPackage, onPackageSelected }
       </div>
 
       <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
-        {packages.map((pkg) => {
+        {activePackages.map((pkg) => {
           const isSelected = selectedPackage?.name === pkg.name;
           return (
             <div
