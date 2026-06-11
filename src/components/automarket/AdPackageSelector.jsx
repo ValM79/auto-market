@@ -102,9 +102,8 @@ function PackageCard({ pkg, isSelected, onSelect }) {
 }
 
 export default function AdPackageSelector({ selectedPackage, onPackageSelected, isFlatFee }) {
-  // Auto-select flat fee package on mount / when flat fee mode activates
-  React.useEffect(() => {
-    if (isFlatFee && (!selectedPackage || selectedPackage.priceId !== flatFeePackage.priceId)) {
+  useEffect(() => {
+    if (isFlatFee) {
       onPackageSelected(flatFeePackage);
     }
   }, [isFlatFee]);

@@ -174,13 +174,17 @@ export default function PlaceAd() {
   const [selectedPackage, setSelectedPackage] = useState(null);
   const [checkoutLoading, setCheckoutLoading] = useState(false);
 
-  // Reset package when switching between flat-fee and tiered categories
+  // Sync package limits when package changes
+  useEffect(() => {
+    if (selectedPackage) {
+      setPackageLimits({ listingDays: selectedPackage.listingDays, maxPhotos: selectedPackage.maxPhotos });
+    }
+  }, [selectedPackage]);
+
+  // Reset package when switching away from flat-fee category
   useEffect(() => {
     const isFlatFee = FLAT_FEE_CATEGORIES.includes(form.subsection);
-    if (isFlatFee) {
-      setSelectedPackage(flatFeePackage);
-      setPackageLimits({ listingDays: flatFeePackage.listingDays, maxPhotos: flatFeePackage.maxPhotos });
-    } else if (selectedPackage?.priceId === flatFeePackage.priceId) {
+    if (!isFlatFee && selectedPackage?.priceId === flatFeePackage.priceId) {
       setSelectedPackage(null);
       setPackageLimits({ listingDays: 72, maxPhotos: 12 });
     }
