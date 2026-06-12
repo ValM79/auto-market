@@ -222,7 +222,7 @@ export default function PlaceAd() {
   const [selectedPackage, setSelectedPackage] = useState(null);
   const [checkoutLoading, setCheckoutLoading] = useState(false);
 
-  const isBikeCategory = form.subsection === 'Bikes & Bicycles';
+  const isBikeCategory = ['Bikes & Bicycles', 'Car Extras', 'Car Parts', 'Boat Extras'].includes(form.subsection);
 
   const vehicleDetailsCategories = ['Cars', 'New Cars', 'Trucks', 'Motorbikes', 'Coaches & Buses', 'Commercials'];
   const showVehicleDetails = vehicleDetailsCategories.includes(form.subsection);

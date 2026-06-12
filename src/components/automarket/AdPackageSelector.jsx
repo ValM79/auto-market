@@ -106,6 +106,7 @@ export { packages };
 
 export default function AdPackageSelector({ selectedPackage, onPackageSelected, isBikeCategory }) {
   const activePackages = isBikeCategory ? bikePackages : packages;
+  // isBikeCategory is true for: Bikes & Bicycles, Car Extras, Car Parts, Boat Extras
   return (
     <div className="bg-white border border-border rounded-2xl p-6 shadow-sm">
       <div className="flex items-center justify-between mb-6">
