@@ -176,10 +176,13 @@ export default function PlaceAd() {
 
   const isBikeCategory = form.subsection === 'Bikes & Bicycles';
 
+  const vehicleDetailsCategories = ['Cars', 'New Cars', 'Trucks', 'Motorbikes', 'Coaches & Buses', 'Commercials'];
+  const showVehicleDetails = vehicleDetailsCategories.includes(form.subsection);
+
   const validateForm = () => {
     const errors = {};
     if (!form.subsection) errors.subsection = 'Please select a section';
-    if (!isBikeCategory && !form.registration.trim()) errors.registration = 'This field is required';
+    if (showVehicleDetails && !form.registration.trim()) errors.registration = 'This field is required';
     if (!form.title.trim()) errors.title = 'Please enter a title for your ad';
     if (!form.description.trim()) errors.description = 'Please enter a description for your ad';
     if (!form.price.trim()) errors.price = 'Please enter a price for your ad';
@@ -592,8 +595,8 @@ export default function PlaceAd() {
             </div>
           </Section>
 
-          {/* Section 3: Vehicle Details — hidden for Bikes & Bicycles */}
-          {!isBikeCategory && <Section title="Vehicle Details" icon={<Car className="w-5 h-5" />} subtitle="Get all your vehicle details instantly">
+          {/* Section 3: Vehicle Details — only for specific categories */}
+          {showVehicleDetails && <Section title="Vehicle Details" icon={<Car className="w-5 h-5" />} subtitle="Get all your vehicle details instantly">
             <div className="flex flex-col gap-4">
               <div>
                 <label className="block text-sm font-medium text-foreground mb-1.5">Enter Vehicle Registration <span className="text-destructive">*</span></label>
