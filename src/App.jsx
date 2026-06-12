@@ -54,6 +54,17 @@ import BikesBicycles from './pages/BikesBicycles';
 import Favorites from './pages/Favorites';
 import VehicleDetail from './pages/VehicleDetail';
 import TermsAndConditions from './pages/TermsAndConditions';
+import AboutUs from './pages/AboutUs';
+import ContactUs from './pages/ContactUs';
+import HelpPage from './pages/HelpPage';
+import ReviewsGallery from './pages/ReviewsGallery';
+import Career from './pages/Career';
+import CookiePolicy from './pages/CookiePolicy';
+import PrivacyPolicy from './pages/PrivacyPolicy';
+import ManageCookies from './pages/ManageCookies';
+import Accessibility from './pages/Accessibility';
+import DealersInformation from './pages/DealersInformation';
+import Advertisement from './pages/Advertisement';
 // Add page imports here
 
 const AuthenticatedApp = () => {
@@ -130,6 +141,17 @@ const AuthenticatedApp = () => {
       <Route path="/favorites" element={<Favorites />} />
       <Route path="/vehicle/:id" element={<VehicleDetail />} />
       <Route path="/terms-and-conditions" element={<TermsAndConditions />} />
+      <Route path="/about-us" element={<AboutUs />} />
+      <Route path="/contact-us" element={<ContactUs />} />
+      <Route path="/help" element={<HelpPage />} />
+      <Route path="/reviews-gallery" element={<ReviewsGallery />} />
+      <Route path="/career" element={<Career />} />
+      <Route path="/cookie-policy" element={<CookiePolicy />} />
+      <Route path="/privacy-policy" element={<PrivacyPolicy />} />
+      <Route path="/manage-cookies" element={<ManageCookies />} />
+      <Route path="/accessibility" element={<Accessibility />} />
+      <Route path="/dealers-information" element={<DealersInformation />} />
+      <Route path="/advertisement" element={<Advertisement />} />
       <Route path="*" element={<PageNotFound />} />
     </Routes>
   );

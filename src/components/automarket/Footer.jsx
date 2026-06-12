@@ -1,17 +1,33 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 
 const footerSections = [
 {
   title: 'Company',
-  links: ['About us', 'Contact us', 'Help', 'Reviews Gallery', 'Career']
+  links: [
+    { label: 'About us', route: '/about-us' },
+    { label: 'Contact us', route: '/contact-us' },
+    { label: 'Help', route: '/help' },
+    { label: 'Reviews Gallery', route: '/reviews-gallery' },
+    { label: 'Career', route: '/career' },
+  ]
 },
 {
   title: "Information",
-  links: ['Cookie policy', 'Privacy policy', 'Terms & conditions', 'Manage cookies', 'Accessibility']
+  links: [
+    { label: 'Cookie policy', route: '/cookie-policy' },
+    { label: 'Privacy policy', route: '/privacy-policy' },
+    { label: 'Terms & conditions', route: '/terms-and-conditions' },
+    { label: 'Manage cookies', route: '/manage-cookies' },
+    { label: 'Accessibility', route: '/accessibility' },
+  ]
 },
 {
   title: 'Resources',
-  links: ['Dealers information', 'Advertisement']
+  links: [
+    { label: 'Dealers information', route: '/dealers-information' },
+    { label: 'Advertisement', route: '/advertisement' },
+  ]
 }];
 
 
@@ -84,17 +100,13 @@ export default function Footer() {
             <div key={section.title}>
               <h3 className="text-white font-semibold text-sm mb-4">{section.title}</h3>
               <ul className="space-y-2.5">
-                {section.links.map((link) => {
-                  let href = '#';
-                  if (link === 'Cartell vehicle check') href = 'https://cartell.ie';
-                  return (
-                    <li key={link}>
-                      <a href={href} target={href !== '#' ? '_blank' : undefined} rel={href !== '#' ? 'noopener noreferrer' : undefined} className="text-sm hover:text-white transition-colors">
-                        {link}
-                      </a>
-                    </li>
-                  );
-                })}
+                {section.links.map((link) => (
+                  <li key={link.label}>
+                    <Link to={link.route} className="text-sm hover:text-white transition-colors">
+                      {link.label}
+                    </Link>
+                  </li>
+                ))}
               </ul>
             </div>
           )}
