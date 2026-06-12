@@ -432,7 +432,7 @@ export default function PlaceAd() {
 
                   {/* Select Section */}
                   <div id="field-subsection">
-                    <label className="block text-sm font-medium text-foreground mb-1.5">Select Section</label>
+                    <label className="block text-sm font-medium text-foreground mb-1.5">Select Category</label>
                     <div className="relative">
                       <select
                       value={form.subsection}
@@ -460,7 +460,7 @@ export default function PlaceAd() {
                   {/* Bikes & Bicycles Subsection */}
                   {form.subsection === 'Bikes & Bicycles' &&
                 <div>
-                      <label className="block text-sm font-medium text-foreground mb-1.5">Select Subsection</label>
+                      <label className="block text-sm font-medium text-foreground mb-1.5">Select Subcategory</label>
                       <div className="relative">
                         <select
                       value={form.bikeSubsection}
