@@ -6,6 +6,9 @@ import Navbar from '../components/automarket/Navbar';
 import Footer from '../components/automarket/Footer';
 import FiltersSidebar from '../components/automarket/FiltersSidebar';
 import ListingCard from '../components/automarket/ListingCard';
+import Pagination from '../components/automarket/Pagination';
+
+const ITEMS_PER_PAGE = 10;
 
 
 const listings = [
@@ -126,6 +129,7 @@ export default function NewCars() {
   const [search, setSearch] = useState('');
   const [savedIds, setSavedIds] = useState([]);
   const [activeFilters, setActiveFilters] = useState({ vehicles: [] });
+  const [currentPage, setCurrentPage] = useState(1);
 
   const toggleSaved = (id) => setSavedIds((prev) => prev.includes(id) ? prev.filter((x) => x !== id) : [...prev, id]);
 
@@ -138,14 +142,29 @@ export default function NewCars() {
     return makeMatch && modelMatch;
   };
 
+  const allFiltered = activeVehicles.length > 0
+    ? listings.filter(l => matchesSearch(l) && activeVehicles.some(v => matchesVehicle(l, v)))
+    : listings.filter(matchesSearch);
+
+  const totalPages = Math.ceil(allFiltered.length / ITEMS_PER_PAGE);
+  const paginated = allFiltered.slice((currentPage - 1) * ITEMS_PER_PAGE, currentPage * ITEMS_PER_PAGE);
+
+  const handlePageChange = (page) => {
+    setCurrentPage(page);
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  };
+
+  const handleSearchChange = (e) => {
+    setSearch(e.target.value);
+    setCurrentPage(1);
+  };
+
   const groups = activeVehicles.length > 0
     ? activeVehicles.map(v => ({
         label: [v.make, v.model].filter(Boolean).join(' '),
-        listings: listings.filter(l => matchesSearch(l) && matchesVehicle(l, v)),
+        listings: paginated.filter(l => matchesVehicle(l, v)),
       }))
-    : [{ label: null, listings: listings.filter(matchesSearch) }];
-
-  const filtered = listings.filter(matchesSearch);
+    : [{ label: null, listings: paginated }];
 
   return (
     <div className="min-h-screen bg-background">
@@ -171,7 +190,7 @@ export default function NewCars() {
             <input
               type="text"
               value={search}
-              onChange={(e) => setSearch(e.target.value)}
+              onChange={handleSearchChange}
               placeholder="Search Cars"
               className="w-full bg-secondary/60 rounded-lg pl-9 pr-4 py-3 text-sm focus:outline-none border-0 outline-none" />
           </div>
@@ -189,7 +208,7 @@ export default function NewCars() {
           <div className="flex-1 min-w-0">
             <div className="flex items-center justify-between mb-4">
               <p className="text-sm text-muted-foreground">
-                <span className="font-semibold text-foreground">{groups.reduce((acc, g) => acc + g.listings.length, 0).toLocaleString()}</span> cars in Ireland
+                <span className="font-semibold text-foreground">{allFiltered.length.toLocaleString()}</span> cars in Ireland
               </p>
               <div className="flex items-center gap-2 text-sm text-muted-foreground">
                 Sort by: <span className="font-semibold text-foreground">Best match</span>
@@ -230,6 +249,12 @@ export default function NewCars() {
                 )}
               </div>
             ))}
+
+            <Pagination
+              currentPage={currentPage}
+              totalPages={totalPages}
+              onPageChange={handlePageChange}
+            />
           </div>
         </div>
       </div>
