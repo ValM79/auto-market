@@ -1,6 +1,9 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { Search, Star, ChevronDown, ChevronUp, ArrowLeft } from 'lucide-react';
+import Pagination from '../components/automarket/Pagination';
+
+const ITEMS_PER_PAGE = 10;
 import ListingCard from '../components/automarket/ListingCard';
 import Navbar from '../components/automarket/Navbar';
 import Footer from '../components/automarket/Footer';
@@ -192,6 +195,7 @@ export default function Commercials() {
   const [reserveOnline, setReserveOnline] = useState(false);
   const [adType, setAdType] = useState('All');
   const [savedIds, setSavedIds] = useState([]);
+  const [currentPage, setCurrentPage] = useState(1);
 
   const toggleSaved = (id) => setSavedIds((prev) => prev.includes(id) ? prev.filter((x) => x !== id) : [...prev, id]);
   const toggleArr = (setter) => (val) => setter((prev) => prev.includes(val) ? prev.filter((x) => x !== val) : [...prev, val]);
@@ -208,12 +212,15 @@ export default function Commercials() {
     setReserveOnline(false);setAdType('All');
   };
 
-  const filtered = listings.filter((l) => {
+  const allFiltered = listings.filter((l) => {
     const matchSearch = !search || l.title.toLowerCase().includes(search.toLowerCase());
     const matchCounty = county === 'All Ireland' || l.location === county;
     const matchMake = make === 'All makes' || l.title.toLowerCase().includes(make.toLowerCase());
     return matchSearch && matchCounty && matchMake;
   });
+  const totalPages = Math.ceil(allFiltered.length / ITEMS_PER_PAGE);
+  const filtered = allFiltered.slice((currentPage - 1) * ITEMS_PER_PAGE, currentPage * ITEMS_PER_PAGE);
+  const handlePageChange = (page) => { setCurrentPage(page); window.scrollTo({ top: 0, behavior: 'smooth' }); };
 
   return (
     <div className="min-h-screen bg-background">
@@ -395,6 +402,7 @@ export default function Commercials() {
             </div>
 
             <div className="flex flex-col gap-4">
+              {filtered.length === 0 && <div className="text-center py-16 text-muted-foreground"><p className="text-lg font-medium">No commercials found</p><p className="text-sm mt-1">Try adjusting your search or filters</p></div>}
               {filtered.map((listing) =>
               <ListingCard
                 key={listing.id}
@@ -410,6 +418,7 @@ export default function Commercials() {
 
               )}
             </div>
+            <Pagination currentPage={currentPage} totalPages={totalPages} onPageChange={handlePageChange} />
           </div>
         </div>
       </div>

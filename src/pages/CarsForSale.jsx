@@ -9,6 +9,9 @@ import Footer from '../components/automarket/Footer';
 import FiltersSidebar from '../components/automarket/FiltersSidebar';
 import CompareBar from '../components/automarket/CompareBar';
 import CompareModal from '../components/automarket/CompareModal';
+import Pagination from '../components/automarket/Pagination';
+
+const ITEMS_PER_PAGE = 10;
 
 const carListings = [
   {
@@ -129,6 +132,7 @@ export default function CarsForSale() {
     return params.get('q') || '';
   });
   const [activeFilters, setActiveFilters] = useState({ vehicles: [] });
+  const [currentPage, setCurrentPage] = useState(1);
   const { isFavorite, toggleFavorite } = useFavorites();
   const [compareCars, setCompareCars] = useState([]);
   const [showCompareModal, setShowCompareModal] = useState(false);
@@ -170,14 +174,21 @@ export default function CarsForSale() {
     return makeMatch && modelMatch;
   };
 
+  const allFiltered = activeVehicles.length > 0
+    ? carListings.filter(c => matchesSearch(c) && matchesRanges(c) && activeVehicles.some(v => matchesVehicle(c, v)))
+    : carListings.filter(c => matchesSearch(c) && matchesRanges(c));
+
+  const totalPages = Math.ceil(allFiltered.length / ITEMS_PER_PAGE);
+  const paginated = allFiltered.slice((currentPage - 1) * ITEMS_PER_PAGE, currentPage * ITEMS_PER_PAGE);
+
+  const handlePageChange = (page) => { setCurrentPage(page); window.scrollTo({ top: 0, behavior: 'smooth' }); };
+
   const groups = activeVehicles.length > 0
     ? activeVehicles.map(v => ({
         label: [v.make, v.model].filter(Boolean).join(' '),
-        listings: carListings.filter(c => matchesSearch(c) && matchesRanges(c) && matchesVehicle(c, v)),
+        listings: paginated.filter(c => matchesVehicle(c, v)),
       }))
-    : [{ label: null, listings: carListings.filter(c => matchesSearch(c) && matchesRanges(c)) }];
-
-  const filtered = carListings.filter(c => matchesSearch(c) && matchesRanges(c));
+    : [{ label: null, listings: paginated }];
 
   return (
     <div className="min-h-screen bg-background">
@@ -223,7 +234,7 @@ export default function CarsForSale() {
             {/* Sort bar */}
             <div className="flex items-center justify-between mb-4">
               <p className="text-sm text-muted-foreground">
-                <span className="font-semibold text-foreground">{groups.reduce((acc, g) => acc + g.listings.length, 0).toLocaleString()}</span> cars in Ireland
+                <span className="font-semibold text-foreground">{allFiltered.length.toLocaleString()}</span> cars in Ireland
               </p>
               <div className="flex items-center gap-2 text-sm text-muted-foreground">
                 Sort by: <span className="font-semibold text-foreground">Best match</span>
@@ -258,6 +269,7 @@ export default function CarsForSale() {
                 )}
               </div>
             ))}
+            <Pagination currentPage={currentPage} totalPages={totalPages} onPageChange={handlePageChange} />
           </div>
         </div>
       </div>

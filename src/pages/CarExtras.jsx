@@ -5,6 +5,9 @@ import ListingCard from '../components/automarket/ListingCard';
 import Navbar from '../components/automarket/Navbar';
 import Footer from '../components/automarket/Footer';
 import FiltersSidebar from '../components/automarket/FiltersSidebar';
+import Pagination from '../components/automarket/Pagination';
+
+const ITEMS_PER_PAGE = 10;
 
 const listings = [
 {
@@ -119,19 +122,23 @@ const subsections = [
 export default function CarExtras() {
   const [search, setSearch] = useState('');
   const [savedIds, setSavedIds] = useState([]);
+  const [currentPage, setCurrentPage] = useState(1);
   const [activeSubsection, setActiveSubsection] = useState('Car Extras');
 
   const toggleSave = (id) => setSavedIds((prev) =>
   prev.includes(id) ? prev.filter((i) => i !== id) : [...prev, id]
   );
 
-  const filtered = listings.filter((c) => {
+  const allFiltered = listings.filter((c) => {
     const matchesSearch = !search ||
     c.title.toLowerCase().includes(search.toLowerCase()) ||
     c.location.toLowerCase().includes(search.toLowerCase());
     const matchesSection = activeSubsection === 'Car Extras' || c.category === activeSubsection;
     return matchesSearch && matchesSection;
   });
+  const totalPages = Math.ceil(allFiltered.length / ITEMS_PER_PAGE);
+  const filtered = allFiltered.slice((currentPage - 1) * ITEMS_PER_PAGE, currentPage * ITEMS_PER_PAGE);
+  const handlePageChange = (page) => { setCurrentPage(page); window.scrollTo({ top: 0, behavior: 'smooth' }); };
 
   return (
     <div className="min-h-screen bg-background">
@@ -237,6 +244,7 @@ export default function CarExtras() {
                 </div>
               }
             </div>
+            <Pagination currentPage={currentPage} totalPages={totalPages} onPageChange={handlePageChange} />
           </div>
         </div>
       </div>
