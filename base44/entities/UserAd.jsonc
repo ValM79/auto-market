@@ -1,0 +1,104 @@
+{
+  "name": "UserAd",
+  "type": "object",
+  "properties": {
+    "title": {
+      "type": "string"
+    },
+    "description": {
+      "type": "string"
+    },
+    "price": {
+      "type": "string"
+    },
+    "category": {
+      "type": "string"
+    },
+    "subsection": {
+      "type": "string"
+    },
+    "location": {
+      "type": "string"
+    },
+    "county": {
+      "type": "string"
+    },
+    "area": {
+      "type": "string"
+    },
+    "mileage": {
+      "type": "string"
+    },
+    "mileageUnit": {
+      "type": "string"
+    },
+    "vehicleMake": {
+      "type": "string"
+    },
+    "vehicleModel": {
+      "type": "string"
+    },
+    "vehicleYear": {
+      "type": "string"
+    },
+    "vehicleFuel": {
+      "type": "string"
+    },
+    "vehicleTransmission": {
+      "type": "string"
+    },
+    "bodyType": {
+      "type": "string"
+    },
+    "colour": {
+      "type": "string"
+    },
+    "engineSize": {
+      "type": "string"
+    },
+    "photos": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "fullName": {
+      "type": "string"
+    },
+    "email": {
+      "type": "string"
+    },
+    "phone": {
+      "type": "string"
+    },
+    "adType": {
+      "type": "string"
+    },
+    "isTrader": {
+      "type": "boolean"
+    },
+    "packageName": {
+      "type": "string"
+    },
+    "listingDays": {
+      "type": "number"
+    },
+    "spotlight": {
+      "type": "boolean"
+    },
+    "status": {
+      "type": "string",
+      "enum": [
+        "active",
+        "expired",
+        "pending"
+      ],
+      "default": "active"
+    }
+  },
+  "required": [
+    "title",
+    "price",
+    "subsection"
+  ]
+}

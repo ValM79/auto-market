@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { useUserAds, userAdToListingItem } from '../hooks/useUserAds';
 import { Link } from 'react-router-dom';
 import { Search, ChevronDown, ArrowLeft } from 'lucide-react';
 import ListingCard from '../components/automarket/ListingCard';
@@ -100,6 +101,7 @@ export default function BikesBicycles() {
   const [search, setSearch] = useState('');
   const [savedIds, setSavedIds] = useState([]);
   const [currentPage, setCurrentPage] = useState(1);
+  const userAds = useUserAds(['Bikes & Bicycles']);
   const toggleSave = (id) => {
     setSavedIds((prev) => {
       const updated = prev.includes(id) ? prev.filter((i) => i !== id) : [...prev, id];
@@ -160,6 +162,9 @@ export default function BikesBicycles() {
               </div>
             </div>
             <div className="flex flex-col gap-4">
+              {userAds.map(ad => (
+                <ListingCard key={`user-${ad.id}`} item={userAdToListingItem(ad)} saved={savedIds.includes(ad.id)} onToggleSave={toggleSave} viewMode="list" />
+              ))}
               {filtered.map((item) =>
               <ListingCard key={item.id} item={item} saved={savedIds.includes(item.id)} onToggleSave={toggleSave} viewMode="list" />
               )}

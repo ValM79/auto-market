@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { useUserAds, userAdToListingItem } from '../hooks/useUserAds';
 import { Link } from 'react-router-dom';
 import { Search, Star, ChevronDown, ChevronUp, ArrowLeft } from 'lucide-react';
 import Pagination from '../components/automarket/Pagination';
@@ -196,6 +197,7 @@ export default function Commercials() {
   const [adType, setAdType] = useState('All');
   const [savedIds, setSavedIds] = useState([]);
   const [currentPage, setCurrentPage] = useState(1);
+  const userAds = useUserAds(['Commercials']);
 
   const toggleSaved = (id) => setSavedIds((prev) => prev.includes(id) ? prev.filter((x) => x !== id) : [...prev, id]);
   const toggleArr = (setter) => (val) => setter((prev) => prev.includes(val) ? prev.filter((x) => x !== val) : [...prev, val]);
@@ -402,6 +404,9 @@ export default function Commercials() {
             </div>
 
             <div className="flex flex-col gap-4">
+              {userAds.map(ad => (
+                <ListingCard key={`user-${ad.id}`} item={userAdToListingItem(ad)} saved={savedIds.includes(ad.id)} onToggleSave={toggleSaved} viewMode="list" />
+              ))}
               {filtered.length === 0 && <div className="text-center py-16 text-muted-foreground"><p className="text-lg font-medium">No commercials found</p><p className="text-sm mt-1">Try adjusting your search or filters</p></div>}
               {filtered.map((listing) =>
               <ListingCard

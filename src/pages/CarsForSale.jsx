@@ -10,6 +10,7 @@ import FiltersSidebar from '../components/automarket/FiltersSidebar';
 import CompareBar from '../components/automarket/CompareBar';
 import CompareModal from '../components/automarket/CompareModal';
 import Pagination from '../components/automarket/Pagination';
+import { useUserAds, userAdToListingItem } from '../hooks/useUserAds';
 
 const ITEMS_PER_PAGE = 10;
 
@@ -125,6 +126,9 @@ const carListings = [
 
 
 
+// Subsections that map to the Cars for Sale page
+const CARS_SUBSECTIONS = ['Cars', 'New Cars', 'Cars from Dealerships', 'Vintage Cars', 'Modified Cars', 'Rally Cars', 'Breaking & Repairables'];
+
 export default function CarsForSale() {
   const location = useLocation();
   const [search, setSearch] = useState(() => {
@@ -136,6 +140,7 @@ export default function CarsForSale() {
   const { isFavorite, toggleFavorite } = useFavorites();
   const [compareCars, setCompareCars] = useState([]);
   const [showCompareModal, setShowCompareModal] = useState(false);
+  const userAds = useUserAds(CARS_SUBSECTIONS);
 
   const toggleCompare = (car) => {
     setCompareCars(prev => {
@@ -241,6 +246,21 @@ export default function CarsForSale() {
                 <ChevronDown className="w-4 h-4" />
               </div>
             </div>
+
+            {/* User-placed ads appear at the top */}
+            {userAds.length > 0 && (
+              <div className="flex flex-col gap-4 mb-4">
+                {userAds.map(ad => (
+                  <ListingCard
+                    key={`user-${ad.id}`}
+                    item={userAdToListingItem(ad)}
+                    saved={isFavorite(ad.id)}
+                    onToggleSave={() => toggleFavorite(userAdToListingItem(ad))}
+                    viewMode="list"
+                  />
+                ))}
+              </div>
+            )}
 
             {groups.map((group, gi) => (
               <div key={gi} className="mb-6">

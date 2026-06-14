@@ -222,6 +222,24 @@ export default function PlaceAd() {
   const [selectedPackage, setSelectedPackage] = useState(null);
   const [checkoutLoading, setCheckoutLoading] = useState(false);
 
+  // Save ad to database after successful Stripe payment
+  useEffect(() => {
+    const params = new URLSearchParams(window.location.search);
+    if (params.get('payment') === 'success') {
+      const pending = localStorage.getItem('pendingAd');
+      if (pending) {
+        try {
+          const adData = JSON.parse(pending);
+          base44.entities.UserAd.create(adData).then(() => {
+            localStorage.removeItem('pendingAd');
+          });
+        } catch (e) {
+          // ignore parse errors
+        }
+      }
+    }
+  }, []);
+
   const isBikeCategory = ['Bikes & Bicycles', 'Car Extras', 'Car Parts', 'Boat Extras'].includes(form.subsection);
 
   const vehicleDetailsCategories = ['Cars', 'New Cars', 'Trucks', 'Motorbikes', 'Coaches & Buses', 'Commercials'];
@@ -1080,6 +1098,38 @@ export default function PlaceAd() {
                 }
                 setCheckoutLoading(true);
                 try {
+                  // Store ad data so we can save it after payment redirect
+                  const adData = {
+                    title: form.title,
+                    description: form.description,
+                    price: form.price,
+                    category: form.category,
+                    subsection: form.subsection,
+                    county: form.county,
+                    area: form.area,
+                    location: `${form.area}, ${form.county}`,
+                    mileage: form.mileage ? `${form.mileage} ${form.mileageUnit}` : '',
+                    vehicleMake: form.vehicleMake,
+                    vehicleModel: form.vehicleModel,
+                    vehicleYear: form.vehicleYear,
+                    vehicleFuel: form.vehicleFuel,
+                    vehicleTransmission: form.vehicleTransmission,
+                    bodyType: form.bodyType,
+                    colour: form.colour,
+                    engineSize: form.engineSize,
+                    fullName: form.fullName,
+                    email: form.email,
+                    phone: form.phone,
+                    adType: form.adType,
+                    isTrader: form.isTrader,
+                    photos: photos.map(p => p.preview),
+                    status: 'active',
+                    spotlight: selectedPackage?.spotlightDays > 0,
+                    packageName: selectedPackage?.name,
+                    listingDays: selectedPackage?.listingDays
+                  };
+                  localStorage.setItem('pendingAd', JSON.stringify(adData));
+
                   const res = await base44.functions.invoke('createCheckoutSession', {
                     priceId: selectedPackage.priceId,
                     packageName: selectedPackage.name,
