@@ -375,6 +375,23 @@ export default function PlaceAd() {
     handleFiles(e.dataTransfer.files);
   };
 
+  const uploadPhotos = async (photoList) => {
+    const uploaded = await Promise.all(
+      photoList.map(async (p) => {
+        try {
+          const res = await fetch(p.preview);
+          const blob = await res.blob();
+          const file = new File([blob], 'photo.jpg', { type: blob.type || 'image/jpeg' });
+          const result = await base44.integrations.Core.UploadFile({ file });
+          return result.file_url;
+        } catch {
+          return null;
+        }
+      })
+    );
+    return uploaded.filter(Boolean);
+  };
+
   const handleLookupVehicle = async () => {
     if (!form.registration.trim()) {
       setVehicleError('Please enter a registration number');
@@ -1098,6 +1115,9 @@ export default function PlaceAd() {
                 }
                 setCheckoutLoading(true);
                 try {
+                  // Upload photos to permanent storage before redirect
+                  const uploadedPhotoUrls = photos.length > 0 ? await uploadPhotos(photos) : [];
+
                   // Store ad data so we can save it after payment redirect
                   const adData = {
                     title: form.title,
@@ -1122,7 +1142,7 @@ export default function PlaceAd() {
                     phone: form.phone,
                     adType: form.adType,
                     isTrader: form.isTrader,
-                    photos: photos.map(p => p.preview),
+                    photos: uploadedPhotoUrls,
                     status: 'active',
                     spotlight: selectedPackage?.spotlightDays > 0,
                     packageName: selectedPackage?.name,
@@ -1152,7 +1172,7 @@ export default function PlaceAd() {
               }}
               disabled={checkoutLoading}
               className="w-full bg-foreground text-white font-bold py-4 rounded-xl text-base hover:opacity-90 transition-opacity disabled:opacity-60">
-              {checkoutLoading ? 'Redirecting to payment...' : 'Sell Now'}
+              {checkoutLoading ? (photos.length > 0 ? 'Uploading photos...' : 'Redirecting to payment...') : 'Sell Now'}
             </button>
             <p className="text-xs text-muted-foreground text-center">
               By clicking "Sell Now", you agree to the AutoMax{' '}
