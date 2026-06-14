@@ -222,6 +222,34 @@ export default function PlaceAd() {
   const [selectedPackage, setSelectedPackage] = useState(null);
   const [checkoutLoading, setCheckoutLoading] = useState(false);
 
+  // Subsection → route mapping for redirect after payment
+  const subsectionToRoute = {
+    'Cars': '/cars-for-sale',
+    'New Cars': '/cars-for-sale',
+    'Cars from Dealerships': '/cars-for-sale',
+    'Vintage Cars': '/cars-for-sale',
+    'Modified Cars': '/cars-for-sale',
+    'Rally Cars': '/cars-for-sale',
+    'Breaking & Repairables': '/cars-for-sale',
+    'Car Parts': '/car-parts',
+    'Car Extras': '/car-extras',
+    'Trucks': '/trucks',
+    'Commercials': '/commercials',
+    'Trailers': '/trucks',
+    'Campers': '/trucks',
+    'Coaches & Buses': '/trucks',
+    'Plant Machinery': '/trucks',
+    'Caravans': '/trucks',
+    'Motorbike Extras': '/motorbike-extras',
+    'Bikes & Bicycles': '/bikes-bicycles',
+    'Motorbikes': '/motorbikes',
+    'Vintage Bikes': '/motorbikes',
+    'Scooters': '/motorbikes',
+    'Quads': '/motorbikes',
+    'Boats & Jet Skis': '/boats',
+    'Boat Extras': '/boat-extras',
+  };
+
   // Save ad to database after successful Stripe payment
   useEffect(() => {
     const params = new URLSearchParams(window.location.search);
@@ -232,6 +260,9 @@ export default function PlaceAd() {
           const adData = JSON.parse(pending);
           base44.entities.UserAd.create(adData).then(() => {
             localStorage.removeItem('pendingAd');
+            // Redirect to the relevant category page so the ad appears at the top
+            const route = subsectionToRoute[adData.subsection] || '/cars-for-sale';
+            navigate(route);
           });
         } catch (e) {
           // ignore parse errors
