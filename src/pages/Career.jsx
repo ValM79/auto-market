@@ -43,12 +43,12 @@ export default function Career() {
               </div>
               <div className="flex items-center gap-3">
                 <span className="text-xs font-medium bg-primary/10 text-primary px-3 py-1 rounded-full">{job.type}</span>
-                <a href="mailto:careers@automax.ie" className="bg-foreground text-white text-sm font-semibold px-4 py-2 rounded-lg hover:opacity-90 transition-opacity whitespace-nowrap">Apply Now</a>
+                <button onClick={() => alert('Thank you for your interest! Please send your CV to careers@automax.ie')} className="bg-foreground text-white text-sm font-semibold px-4 py-2 rounded-lg hover:opacity-90 transition-opacity whitespace-nowrap">Apply Now</button>
               </div>
             </div>
           ))}
         </div>
-        <p className="text-center text-muted-foreground text-sm mt-8">Don't see a suitable role? Send your CV to <a href="mailto:careers@automax.ie" className="text-primary hover:underline">careers@automax.ie</a></p>
+        <p className="text-center text-muted-foreground text-sm mt-8">Don't see a suitable role? Send your CV to <span className="text-primary">careers@automax.ie</span></p>
       </div>
       <Footer />
     </div>
